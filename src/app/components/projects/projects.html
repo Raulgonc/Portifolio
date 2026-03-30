@@ -3,35 +3,61 @@
     <p class="section-title">Projects</p>
     <div class="section-line"></div>
 
-    <div class="projects-grid">
-      @for (project of projects; track project.id) {
-        <div class="project-card">
-          <div class="card-top">
-            <span class="project-id">{{ project.id }}</span>
-            <span class="project-status" [class]="project.status">
-              {{ project.status === 'live' ? '● LIVE' : project.status === 'wip' ? '◐ WIP' : '○ ARCHIVED' }}
-            </span>
+    <!-- Loading -->
+    @if (loading()) {
+      <div class="projects-grid">
+        @for (i of [1,2,3,4,5,6]; track i) {
+          <div class="project-card skeleton">
+            <div class="sk-line sk-short"></div>
+            <div class="sk-line sk-long"></div>
+            <div class="sk-line sk-medium"></div>
+            <div class="sk-line sk-short"></div>
           </div>
+        }
+      </div>
+    }
 
-          <h3 class="project-title">{{ project.title }}</h3>
-          <p class="project-desc">{{ project.description }}</p>
+    <!-- Erro -->
+    @if (error()) {
+      <div class="projects-error">
+        <span class="error-icon">⚠</span>
+        <p>Falha na conexão com a API do GitHub.<br>
+        <a href="https://github.com/Raulgonc" target="_blank">Ver projetos diretamente no GitHub ↗</a></p>
+      </div>
+    }
 
-          <div class="project-tags">
-            @for (tag of project.tags; track tag) {
-              <span class="tag">{{ tag }}</span>
-            }
+    <!-- Repos -->
+    @if (!loading() && !error()) {
+      <div class="projects-grid">
+        @for (repo of repos(); track repo.id) {
+          <div class="project-card">
+            <div class="card-top">
+              <span class="project-id">{{ repo.stargazers_count }} ★</span>
+              <span class="project-forks">{{ repo.forks_count }} forks</span>
+            </div>
+
+            <h3 class="project-title">{{ repo.name }}</h3>
+
+            <p class="project-desc">
+              {{ repo.description || 'Sem descrição.' }}
+            </p>
+
+            <div class="project-footer">
+              @if (repo.language) {
+                <span class="project-lang">
+                  <span class="lang-dot" [style.background]="langColor(repo.language)"></span>
+                  {{ repo.language }}
+                </span>
+              }
+              <span class="project-date">{{ formatDate(repo.updated_at) }}</span>
+            </div>
+
+            <a [href]="repo.html_url" target="_blank" class="card-link">
+              Ver repositório ↗
+            </a>
           </div>
-
-          <div class="card-actions">
-            @if (project.link) {
-              <a [href]="project.link" target="_blank" class="card-link">↗ Ver projeto</a>
-            }
-            @if (project.repo) {
-              <a [href]="project.repo" target="_blank" class="card-link muted">⌥ Repositório</a>
-            }
-          </div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    }
   </div>
 </section>

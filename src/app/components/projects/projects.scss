@@ -4,31 +4,32 @@
   gap: 24px;
 }
 
+/* ── Card ── */
 .project-card {
   background: var(--nebula);
   border: 1px solid rgba(232, 160, 32, 0.12);
   padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   position: relative;
   transition: border-color 0.2s, transform 0.2s;
 
-  &::after {
+  &::before {
     content: '';
     position: absolute;
-    inset: 0;
-    border: 1px solid transparent;
-    transition: border-color 0.2s;
-    pointer-events: none;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber-dim), transparent);
+    transition: background 0.2s;
   }
 
   &:hover {
     border-color: rgba(232, 160, 32, 0.35);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 
-    &::after {
-      border-color: rgba(232, 160, 32, 0.08);
+    &::before {
+      background: linear-gradient(90deg, var(--amber), transparent);
     }
   }
 }
@@ -36,62 +37,54 @@
 .card-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.project-id {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   color: var(--muted);
-  letter-spacing: 0.2em;
-}
-
-.project-status {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
   letter-spacing: 0.1em;
-
-  &.live     { color: var(--teal-light); }
-  &.wip      { color: var(--amber); }
-  &.archived { color: var(--muted); }
 }
+
+.project-forks { color: var(--muted); }
 
 .project-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--cream);
   letter-spacing: 0.05em;
+  word-break: break-word;
 }
 
 .project-desc {
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   color: var(--muted-light);
   line-height: 1.7;
   flex: 1;
 }
 
-.project-tags {
+.project-footer {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tag {
+  align-items: center;
+  justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: var(--amber-dim);
-  border: 1px solid rgba(138, 90, 16, 0.5);
-  padding: 3px 10px;
-  text-transform: uppercase;
+  font-size: 0.7rem;
 }
 
-.card-actions {
+.project-lang {
   display: flex;
-  gap: 16px;
-  margin-top: 4px;
+  align-items: center;
+  gap: 6px;
+  color: var(--cream);
 }
+
+.lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.project-date { color: var(--muted); }
 
 .card-link {
   font-family: var(--font-mono);
@@ -100,7 +93,57 @@
   color: var(--amber);
   text-decoration: none;
   transition: color 0.2s;
+  align-self: flex-start;
 
   &:hover { color: var(--amber-glow); }
-  &.muted { color: var(--muted-light); &:hover { color: var(--cream); } }
+}
+
+/* ── Skeleton ── */
+.skeleton {
+  pointer-events: none;
+
+  &::before { background: rgba(232, 160, 32, 0.06); }
+}
+
+.sk-line {
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+
+  &.sk-short  { width: 30%; }
+  &.sk-medium { width: 60%; }
+  &.sk-long   { width: 90%; height: 32px; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Erro ── */
+.projects-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 64px 0;
+  font-family: var(--font-mono);
+  text-align: center;
+  color: var(--muted-light);
+
+  .error-icon {
+    font-size: 2rem;
+    color: var(--rust-light);
+  }
+
+  a {
+    color: var(--amber);
+    &:hover { color: var(--amber-glow); }
+  }
 }

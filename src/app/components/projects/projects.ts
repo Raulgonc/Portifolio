@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { GithubService, GithubRepo } from '../../services/github';
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tags: string[];
-  link?: string;
-  repo?: string;
-  status: 'live' | 'wip' | 'archived';
-}
+const LANG_COLORS: Record<string, string> = {
+  TypeScript:  '#3178c6',
+  JavaScript:  '#f1e05a',
+  HTML:        '#e34c26',
+  CSS:         '#563d7c',
+  SCSS:        '#c6538c',
+  Python:      '#3572A5',
+  Java:        '#b07219',
+};
 
 @Component({
   selector: 'app-projects',
@@ -16,28 +17,31 @@ interface Project {
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
-export class Projects {
-  projects: Project[] = [
-    {
-      id: '001',
-      title: 'Projeto Alpha',
-      description: 'Aplicação web full stack com autenticação, dashboard e API REST. Construída com Angular + Node.js.',
-      tags: ['Angular', 'Node.js', 'PostgreSQL'],
-      status: 'live',
-    },
-    {
-      id: '002',
-      title: 'Projeto Beta',
-      description: 'Sistema de gerenciamento com painel administrativo, relatórios e integração com APIs externas.',
-      tags: ['TypeScript', 'Python', 'Docker'],
-      status: 'wip',
-    },
-    {
-      id: '003',
-      title: 'Projeto Gamma',
-      description: 'Interface responsiva e acessível com foco em performance e experiência do usuário.',
-      tags: ['HTML', 'SCSS', 'JavaScript'],
-      status: 'live',
-    },
-  ];
+export class Projects implements OnInit {
+  private github = inject(GithubService);
+
+  repos = signal<GithubRepo[]>([]);
+  loading = signal(true);
+  error = signal(false);
+
+  ngOnInit() {
+    this.github.getRepos().subscribe({
+      next: data => {
+        this.repos.set(data);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.error.set(true);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  langColor(lang: string | null): string {
+    return lang ? (LANG_COLORS[lang] ?? '#6a6a9a') : '#6a6a9a';
+  }
+
+  formatDate(iso: string): string {
+    return new Date(iso).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
+  }
 }
