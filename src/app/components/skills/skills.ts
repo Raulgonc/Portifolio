@@ -19,7 +19,7 @@ export class Skills {
     { name: 'Angular',      level: 85, category: 'Frontend' },
     { name: 'TypeScript',   level: 82, category: 'Frontend' },
     { name: 'HTML & SCSS',  level: 90, category: 'Frontend' },
-    { name: 'RxJS',         level: 70, category: 'Frontend' },
+    { name: 'React',         level: 70, category: 'Frontend' },
     { name: 'Node.js',      level: 75, category: 'Backend'  },
     { name: 'Python',       level: 72, category: 'Backend'  },
     { name: 'SQL',          level: 78, category: 'Backend'  },

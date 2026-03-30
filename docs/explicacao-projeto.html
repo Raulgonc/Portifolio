@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Documentação — Portfólio Angular</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+  :root {
+    --space: #06060f;
+    --amber: #e8a020;
+    --teal: #1a7a8a;
+    --cream: #f0e6c8;
+    --muted: #6a6a9a;
+    --nebula: #12122e;
+    --rust: #b83020;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fafaf8;
+    color: #1a1a2e;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* ── CAPA ── */
+  .cover {
+    background: var(--space);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 100px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 50%, rgba(26,122,138,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(184,48,32,0.10) 0%, transparent 50%);
+  }
+
+  .cover-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--amber);
+    border: 1px solid rgba(232,160,32,0.4);
+    display: inline-block;
+    padding: 4px 14px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .cover h1 span { color: var(--amber); }
+
+  .cover-sub {
+    font-family: 'Fira Code', monospace;
+    font-size: 18px;
+    color: rgba(26,122,138,0.9);
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .cover-meta {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cover-meta span { color: rgba(232,160,32,0.7); }
+
+  /* ── CONTEÚDO ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 80px;
+    page-break-after: always;
+  }
+
+  .page:last-child { page-break-after: avoid; }
+
+  /* ── CABEÇALHO DE SEÇÃO ── */
+  .section-header {
+    border-left: 4px solid var(--amber);
+    padding-left: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .section-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  /* ── TEXTO ── */
+  p { margin-bottom: 16px; color: #333; }
+  strong { color: #1a1a2e; }
+
+  /* ── CÓDIGO ── */
+  pre, code {
+    font-family: 'Fira Code', monospace;
+    font-size: 12.5px;
+  }
+
+  code {
+    background: #f0f0f8;
+    border: 1px solid #ddddf0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #2a2a6e;
+  }
+
+  pre {
+    background: var(--space);
+    color: #c8d0e8;
+    padding: 24px 28px;
+    border-left: 3px solid var(--amber);
+    overflow-x: auto;
+    margin: 24px 0;
+    line-height: 1.6;
+  }
+
+  pre .key   { color: #30b4cc; }
+  pre .str   { color: #e8a020; }
+  pre .cmt   { color: #4a4a6a; }
+  pre .kw    { color: #e04030; }
+  pre .fn    { color: #a0d0a0; }
+
+  /* ── DIAGRAMA / CAIXAS ── */
+  .diagram {
+    background: #f8f8ff;
+    border: 1px solid #e0e0f0;
+    border-top: 3px solid var(--amber);
+    padding: 28px;
+    margin: 24px 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 2;
+    color: #333;
+  }
+
+  .diagram .amber { color: var(--amber); font-weight: 600; }
+  .diagram .teal  { color: var(--teal);  }
+  .diagram .rust  { color: var(--rust);  }
+  .diagram .muted { color: #999; }
+
+  /* ── GRID DE CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .card {
+    background: #f8f8ff;
+    border: 1px solid #e0e0f0;
+    border-top: 3px solid var(--teal);
+    padding: 20px;
+  }
+
+  .card.amber-top { border-top-color: var(--amber); }
+  .card.rust-top  { border-top-color: var(--rust); }
+
+  .card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+  }
+
+  .card p { font-size: 12.5px; margin: 0; }
+  .card code { font-size: 11px; }
+
+  /* ── TABELA ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 13px;
+  }
+
+  th {
+    background: var(--space);
+    color: var(--amber);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #e8e8f4;
+    color: #333;
+  }
+
+  tr:nth-child(even) td { background: #f8f8ff; }
+
+  td code { font-size: 11px; }
+
+  /* ── PALETA VISUAL ── */
+  .palette {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .swatch-box {
+    width: 70px;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .swatch-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ── FLUXO ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+
+  .flow-box {
+    background: var(--space);
+    color: var(--cream);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .flow-box.amber { background: var(--amber); color: var(--space); font-weight: 600; }
+  .flow-box.teal  { background: var(--teal);  color: #fff; }
+
+  .flow-arrow {
+    font-size: 18px;
+    color: var(--amber);
+    padding: 0 6px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: rgba(232,160,32,0.08);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 13px;
+    color: #333;
+  }
+
+  .callout strong { color: var(--amber); }
+
+  /* ── SEPARADOR ── */
+  hr {
+    border: none;
+    border-top: 1px solid #e0e0f0;
+    margin: 40px 0;
+  }
+
+  /* ── ÍNDICE ── */
+  .toc {
+    background: #f8f8ff;
+    border: 1px solid #e0e0f0;
+    padding: 32px;
+    margin: 32px 0;
+  }
+
+  .toc h3 {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+  }
+
+  .toc li {
+    counter-increment: toc-counter;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px dotted #ddd;
+    font-size: 13px;
+    color: #333;
+  }
+
+  .toc li::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    min-width: 28px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; }
+    .cover { min-height: auto; padding: 60px; }
+    .page { padding: 40px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════ CAPA -->
+<div class="cover">
+  <div class="cover-tag">// DOCUMENTAÇÃO TÉCNICA</div>
+  <h1>Portfólio<br><span>Angular</span></h1>
+  <div class="cover-sub">&gt; Estética Retro Espacial — Cowboy Bebop_</div>
+  <div class="cover-meta">
+    <div><span>FRAMEWORK   </span> Angular 19 (Standalone Components)</div>
+    <div><span>ESTILO      </span> SCSS com design system customizado</div>
+    <div><span>FONTES      </span> Orbitron · Space Mono · Bebas Neue</div>
+    <div><span>DATA        </span> 2026-03-30</div>
+    <div><span>COMMIT      </span> feat: portfólio Angular inicial</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ ÍNDICE -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// NAVEGAÇÃO</span>
+    <h2>Índice</h2>
+  </div>
+
+  <div class="toc">
+    <h3>Conteúdo</h3>
+    <ol>
+      <li>Visão Geral do Projeto</li>
+      <li>Estrutura de Pastas</li>
+      <li>Design System — Paleta e Tipografia</li>
+      <li>Componente: Navbar</li>
+      <li>Componente: Hero (Starfield)</li>
+      <li>Componente: About</li>
+      <li>Componente: Skills</li>
+      <li>Componente: Projects</li>
+      <li>Componente: Contact</li>
+      <li>Página Home e Roteamento</li>
+      <li>Build e Git</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 1. VISÃO GERAL -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 01</span>
+    <h2>Visão Geral do Projeto</h2>
+  </div>
+
+  <p>
+    O projeto é um <strong>portfólio profissional de página única (SPA)</strong> construído com
+    <strong>Angular 19</strong>. A estética foi inspirada em <em>Cowboy Bebop</em> — a série de animê
+    japonesa de 1998 — que mistura jazz noir, viagens espaciais e um visual retro-futurista único.
+  </p>
+
+  <p>
+    Toda a interface usa uma paleta de <strong>espaço profundo</strong> (fundos quase pretos),
+    cores quentes em âmbar/ferrugem e tipografia monospace para transmitir a sensação de um
+    terminal de bordo de uma nave espacial dos anos 2070.
+  </p>
+
+  <div class="card-grid">
+    <div class="card amber-top">
+      <h4>Tecnologia Principal</h4>
+      <p>Angular 19 com <strong>Standalone Components</strong> — arquitetura moderna sem NgModules,
+      cada componente é independente e importa só o que precisa.</p>
+    </div>
+    <div class="card">
+      <h4>Estilo</h4>
+      <p>SCSS com <strong>variáveis CSS globais</strong> (<code>:root</code>) definindo toda a paleta
+      e tipografia — fácil de alterar em um único lugar.</p>
+    </div>
+    <div class="card">
+      <h4>Roteamento</h4>
+      <p>Angular Router com <strong>lazy loading</strong> — a página Home só carrega quando
+      o usuário acessa a rota, melhorando a performance inicial.</p>
+    </div>
+    <div class="card rust-top">
+      <h4>Fontes (Google Fonts)</h4>
+      <p><strong>Orbitron</strong> para títulos, <strong>Space Mono</strong> para texto
+      e código, <strong>Bebas Neue</strong> disponível para destaques decorativos.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Angular Signals:</strong> O projeto usa a nova API de Signals do Angular 19
+    (ex: <code>signal(false)</code> na Navbar para o estado de scroll) — mais performático
+    que o tradicional <code>EventEmitter</code> para estados locais simples.
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 2. ESTRUTURA -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 02</span>
+    <h2>Estrutura de Pastas</h2>
+  </div>
+
+  <p>
+    O projeto segue a estrutura padrão Angular com uma organização extra dividindo
+    <strong>components</strong> (partes reutilizáveis) de <strong>pages</strong> (rotas completas).
+  </p>
+
+  <div class="diagram">
+<span class="amber">projeto-AngularSkills/</span>
+│
+├── <span class="amber">src/</span>
+│   ├── <span class="teal">index.html</span>          <span class="muted">← HTML raiz + Google Fonts</span>
+│   ├── <span class="teal">styles.scss</span>         <span class="muted">← Design system global (variáveis, reset, utilidades)</span>
+│   ├── <span class="teal">main.ts</span>             <span class="muted">← Ponto de entrada da aplicação</span>
+│   │
+│   └── <span class="amber">app/</span>
+│       ├── <span class="teal">app.ts</span>          <span class="muted">← Componente raiz (só carrega o router)</span>
+│       ├── <span class="teal">app.html</span>        <span class="muted">← Template raiz: &lt;router-outlet /&gt;</span>
+│       ├── <span class="teal">app.routes.ts</span>   <span class="muted">← Definição das rotas da aplicação</span>
+│       ├── <span class="teal">app.config.ts</span>   <span class="muted">← Providers globais (router, error listeners)</span>
+│       │
+│       ├── <span class="amber">components/</span>     <span class="muted">← Partes visuais reutilizáveis</span>
+│       │   ├── navbar/
+│       │   ├── hero/
+│       │   ├── about/
+│       │   ├── skills/
+│       │   ├── projects/
+│       │   └── contact/
+│       │
+│       └── <span class="amber">pages/</span>          <span class="muted">← Páginas completas associadas a rotas</span>
+│           └── home/
+│
+├── <span class="teal">angular.json</span>            <span class="muted">← Configuração do workspace Angular CLI</span>
+├── <span class="teal">package.json</span>            <span class="muted">← Dependências e scripts npm</span>
+└── <span class="teal">tsconfig.json</span>           <span class="muted">← Configuração TypeScript</span>
+  </div>
+
+  <p>Cada componente tem <strong>4 arquivos</strong>:</p>
+
+  <table>
+    <thead><tr><th>Arquivo</th><th>Responsabilidade</th></tr></thead>
+    <tbody>
+      <tr><td><code>navbar.ts</code></td><td>Lógica TypeScript — dados, eventos, signals</td></tr>
+      <tr><td><code>navbar.html</code></td><td>Template — estrutura HTML com diretivas Angular</td></tr>
+      <tr><td><code>navbar.scss</code></td><td>Estilos — CSS encapsulado só neste componente</td></tr>
+      <tr><td><code>navbar.spec.ts</code></td><td>Testes automatizados (gerado pelo CLI, para uso futuro)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 3. DESIGN SYSTEM -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 03</span>
+    <h2>Design System — Paleta e Tipografia</h2>
+  </div>
+
+  <p>
+    Todo o visual está centralizado no arquivo <code>src/styles.scss</code>. As cores são
+    definidas como <strong>variáveis CSS nativas</strong> (não Sass), o que significa que
+    podem ser alteradas em tempo real no browser via DevTools.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Paleta de Cores</h3>
+
+  <div class="palette">
+    <div class="swatch">
+      <div class="swatch-box" style="background:#06060f;border-color:#333;"></div>
+      <div class="swatch-label">--space-black<br>#06060f</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#0c0c1e;border-color:#333;"></div>
+      <div class="swatch-label">--deep-space<br>#0c0c1e</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#12122e;border-color:#333;"></div>
+      <div class="swatch-label">--nebula<br>#12122e</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#e8a020;"></div>
+      <div class="swatch-label">--amber<br>#e8a020</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#f5c842;"></div>
+      <div class="swatch-label">--amber-glow<br>#f5c842</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#b83020;"></div>
+      <div class="swatch-label">--rust<br>#b83020</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#1a7a8a;"></div>
+      <div class="swatch-label">--teal<br>#1a7a8a</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#30b4cc;"></div>
+      <div class="swatch-label">--teal-light<br>#30b4cc</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#f0e6c8;"></div>
+      <div class="swatch-label">--cream<br>#f0e6c8</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#6a6a9a;"></div>
+      <div class="swatch-label">--muted<br>#6a6a9a</div>
+    </div>
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Tipografia</h3>
+
+  <table>
+    <thead><tr><th>Variável</th><th>Fonte</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>--font-display</code></td>
+        <td><strong style="font-family: sans-serif; letter-spacing: 2px;">Orbitron</strong></td>
+        <td>Títulos, navbar, seção titles — look sci-fi</td>
+      </tr>
+      <tr>
+        <td><code>--font-mono</code></td>
+        <td><code>Space Mono</code></td>
+        <td>Texto geral, labels, código, coordenadas</td>
+      </tr>
+      <tr>
+        <td><code>--font-bebas</code></td>
+        <td><strong style="letter-spacing: 3px;">Bebas Neue</strong></td>
+        <td>Disponível para destaques e citações grandes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Efeitos Globais</h3>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Scanlines</h4>
+      <p>Aplicadas via <code>body::before</code> com <code>position: fixed</code> e
+      <code>z-index: 9999</code>. Linhas horizontais semi-transparentes imitam a tela de um monitor CRT antigo.</p>
+    </div>
+    <div class="card amber-top">
+      <h4>Animações CSS</h4>
+      <p><code>amber-pulse</code> — glow pulsante no texto âmbar.<br>
+      <code>flicker</code> — piscar sutil imitando neon.<br>
+      <code>blink-cursor</code> — cursor de terminal piscando.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 4. NAVBAR -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 04</span>
+    <h2>Componente: Navbar</h2>
+  </div>
+
+  <p>
+    A barra de navegação é <strong>fixa no topo</strong> (não rola com a página) e muda
+    de aparência conforme o usuário desce a tela.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Comportamento de Scroll</h3>
+
+  <p>
+    Usa o decorator <code>@HostListener('window:scroll')</code> para escutar o evento de scroll
+    do navegador. Quando o scroll passa de <strong>50px</strong>, o Signal <code>scrolled</code>
+    muda de <code>false</code> para <code>true</code>, adicionando a classe <code>.scrolled</code>
+    ao elemento <code>&lt;nav&gt;</code>.
+  </p>
+
+  <pre>
+<span class="key">scrolled</span> = <span class="fn">signal</span>(<span class="kw">false</span>);
+
+<span class="cmt">// Escuta o scroll da janela inteira</span>
+@<span class="fn">HostListener</span>(<span class="str">'window:scroll'</span>)
+<span class="fn">onScroll</span>() {
+  <span class="kw">this</span>.<span class="key">scrolled</span>.<span class="fn">set</span>(window.scrollY > <span class="str">50</span>);
+}</pre>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Estado Inicial (topo)</h4>
+      <p>Fundo transparente, padding maior, sem borda inferior — se mistura ao Hero sem quebrar o visual espacial.</p>
+    </div>
+    <div class="card amber-top">
+      <h4>Estado Após Scroll (.scrolled)</h4>
+      <p>Fundo escuro com <code>backdrop-filter: blur(10px)</code>, padding menor, borda inferior âmbar — fica legível sobre qualquer seção.</p>
+    </div>
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Elementos Visuais</h3>
+
+  <table>
+    <thead><tr><th>Elemento</th><th>Visual</th></tr></thead>
+    <tbody>
+      <tr><td>Logo <code>[DEV]</code></td><td>Fonte Orbitron, animação <code>amber-pulse</code> infinita</td></tr>
+      <tr><td>Links de navegação</td><td>Uppercase, 0.75rem, underline deslizante no hover</td></tr>
+      <tr><td>Indicador ONLINE</td><td>Ponto teal com glow pulsando — simula status de conexão</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 5. HERO -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 05</span>
+    <h2>Componente: Hero (Starfield)</h2>
+  </div>
+
+  <p>
+    A seção Hero ocupa <strong>100% da altura da tela</strong> e é o primeiro impacto visual.
+    O elemento mais técnico aqui é o <strong>starfield animado</strong> desenhado diretamente
+    com a <strong>Canvas API</strong> do navegador.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Como Funciona o Starfield</h3>
+
+  <p>
+    O Angular cria uma referência ao elemento <code>&lt;canvas&gt;</code> do HTML via
+    <code>@ViewChild</code>. No <code>ngOnInit</code>, o componente inicializa o contexto 2D
+    e começa o loop de animação.
+  </p>
+
+  <div class="flow">
+    <div class="flow-box amber">ngOnInit</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">Cria 180 estrelas<br>(posição/tamanho/speed aleatórios)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box teal">requestAnimationFrame loop</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">Move cada estrela para baixo<br>Volta ao topo ao sair da tela</div>
+  </div>
+
+  <pre>
+<span class="cmt">// Cada estrela tem 5 propriedades:</span>
+{
+  x:       <span class="cmt">// posição horizontal</span>
+  y:       <span class="cmt">// posição vertical</span>
+  r:       <span class="cmt">// raio (0.2 a 1.7px — tamanhos variados)</span>
+  speed:   <span class="cmt">// velocidade de queda (0.05 a 0.35)</span>
+  opacity: <span class="cmt">// opacidade (0.3 a 1.0)</span>
+}</pre>
+
+  <div class="callout">
+    <strong>Importante:</strong> O <code>ngOnDestroy</code> cancela o <code>requestAnimationFrame</code>
+    com <code>cancelAnimationFrame(this.animId)</code>. Isso evita memory leak — se o componente
+    for destruído, o loop de animação para.
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Elementos de Texto</h3>
+
+  <table>
+    <thead><tr><th>Elemento</th><th>Função Visual</th></tr></thead>
+    <tbody>
+      <tr><td>Tag <code>// TRANSMISSION RECEIVED</code></td><td>Contexto de "comunicação espacial"</td></tr>
+      <tr><td>Nome gigante (clamp 3–7rem)</td><td>Impacto imediato, escala com o viewport</td></tr>
+      <tr><td><code>&gt; Full Stack Developer_</code></td><td>Simula um terminal com cursor piscando</td></tr>
+      <tr><td>Citação "Whatever happens, happens."</td><td>Frase icônica de Cowboy Bebop</td></tr>
+      <tr><td>Coordenadas LAT/LON/ALT</td><td>Detalhe estético de HUD espacial</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 6. ABOUT -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 06</span>
+    <h2>Componente: About</h2>
+  </div>
+
+  <p>
+    Seção de apresentação pessoal com layout em <strong>grid de duas colunas</strong>:
+    texto à esquerda e um cartão visual à direita simulando um arquivo JSON aberto
+    num terminal.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Coluna Esquerda — Texto</h4>
+      <p>Parágrafo de apresentação + detalhes em formato de tabela com labels em âmbar
+      (<code>STATUS</code>, <code>LOCATION</code>, <code>FOCUS</code>). O status disponível
+      tem um ponto verde pulsante via CSS.</p>
+    </div>
+    <div class="card amber-top">
+      <h4>Coluna Direita — Terminal Card</h4>
+      <p>Imita a interface de um editor de código com cabeçalho (dots vermelho/amarelo/verde)
+      e syntax highlighting aplicado com classes CSS: <code>.key</code>, <code>.str</code>,
+      <code>.num</code>, <code>.bool</code>.</p>
+    </div>
+  </div>
+
+  <pre>
+<span class="cmt">// Exemplo do card terminal em HTML</span>
+&lt;<span class="key">pre</span> class=<span class="str">"card-code"</span>&gt;&lt;<span class="key">code</span>&gt;
+  { <span class="key">"name"</span>: <span class="fn">"Seu Nome"</span>, ... }
+&lt;/<span class="key">code</span>&gt;&lt;/<span class="key">pre</span>&gt;</pre>
+
+  <div class="callout">
+    <strong>Responsividade:</strong> Em telas menores que 768px o grid passa de 2 colunas
+    para 1 coluna via media query — as seções ficam empilhadas verticalmente.
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 7. SKILLS -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 07</span>
+    <h2>Componente: Skills</h2>
+  </div>
+
+  <p>
+    Lista as habilidades técnicas organizadas em <strong>três categorias</strong>
+    (Frontend, Backend, Tools) com barras de progresso estilizadas.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Estrutura de Dados</h3>
+
+  <p>
+    As skills são um array de objetos com interface TypeScript, definidos diretamente
+    no componente:
+  </p>
+
+  <pre>
+<span class="kw">interface</span> <span class="key">Skill</span> {
+  name:     <span class="fn">string</span>;   <span class="cmt">// "Angular"</span>
+  level:    <span class="fn">number</span>;   <span class="cmt">// 85 (representa 85%)</span>
+  category: <span class="fn">string</span>;   <span class="cmt">// "Frontend" | "Backend" | "Tools"</span>
+}</pre>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Renderização com @for</h3>
+
+  <p>
+    Usa a nova sintaxe de controle de fluxo do Angular 17+ (<code>@for</code>) — mais
+    legível que <code>*ngFor</code> e sem precisar importar <code>CommonModule</code>:
+  </p>
+
+  <pre>
+@<span class="fn">for</span> (skill <span class="kw">of</span> <span class="fn">byCategory</span>(cat); track skill.name) {
+  &lt;<span class="key">div</span> class=<span class="str">"skill-bar-fill"</span>
+       [style.width.%]=<span class="str">"skill.level"</span>&gt;&lt;/<span class="key">div</span>&gt;
+}</pre>
+
+  <p>
+    O binding <code>[style.width.%]="skill.level"</code> aplica a largura diretamente
+    como percentual via property binding do Angular — sem precisar de string interpolation.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Barra de Progresso</h3>
+
+  <p>A barra tem três camadas visuais:</p>
+
+  <table>
+    <thead><tr><th>Camada</th><th>Estilo</th></tr></thead>
+    <tbody>
+      <tr><td>Track (fundo)</td><td>Fundo escuro semitransparente</td></tr>
+      <tr><td>Fill (preenchimento)</td><td>Gradiente âmbar-dim → âmbar com box-shadow glow</td></tr>
+      <tr><td>Ponteiro (::after)</td><td>4px brilhante no fim da barra com glow intenso</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 8. PROJECTS -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 08</span>
+    <h2>Componente: Projects</h2>
+  </div>
+
+  <p>
+    Exibe os projetos em um <strong>grid responsivo de cards</strong>. Cada card tem
+    um indicador de status, tags de tecnologia e links opcionais.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Interface TypeScript</h3>
+
+  <pre>
+<span class="kw">interface</span> <span class="key">Project</span> {
+  id:          <span class="fn">string</span>;                        <span class="cmt">// "001"</span>
+  title:       <span class="fn">string</span>;
+  description: <span class="fn">string</span>;
+  tags:        <span class="fn">string</span>[];                      <span class="cmt">// ["Angular", "Node.js"]</span>
+  link?:       <span class="fn">string</span>;                        <span class="cmt">// opcional</span>
+  repo?:       <span class="fn">string</span>;                        <span class="cmt">// opcional</span>
+  status:      <span class="str">'live'</span> | <span class="str">'wip'</span> | <span class="str">'archived'</span>;
+}</pre>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Sistema de Status</h3>
+
+  <table>
+    <thead><tr><th>Status</th><th>Ícone</th><th>Cor</th></tr></thead>
+    <tbody>
+      <tr><td><code>'live'</code></td><td>● LIVE</td><td>Teal (verde-azulado)</td></tr>
+      <tr><td><code>'wip'</code></td><td>◐ WIP</td><td>Âmbar</td></tr>
+      <tr><td><code>'archived'</code></td><td>○ ARCHIVED</td><td>Muted (cinza)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Renderização Condicional</h3>
+
+  <p>Usa <code>@if</code> para só renderizar links se eles existirem no objeto:</p>
+
+  <pre>
+@<span class="fn">if</span> (project.link) {
+  &lt;<span class="key">a</span> [href]=<span class="str">"project.link"</span> target=<span class="str">"_blank"</span>&gt;↗ Ver projeto&lt;/<span class="key">a</span>&gt;
+}
+@<span class="fn">if</span> (project.repo) {
+  &lt;<span class="key">a</span> [href]=<span class="str">"project.repo"</span> target=<span class="str">"_blank"</span>&gt;⌥ Repositório&lt;/<span class="key">a</span>&gt;
+}</pre>
+
+  <div class="callout">
+    <strong>Para personalizar:</strong> Edite o array <code>projects</code> em
+    <code>src/app/components/projects/projects.ts</code> adicionando seus projetos reais
+    com links de deploy e repositório.
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 9. CONTACT -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 09</span>
+    <h2>Componente: Contact</h2>
+  </div>
+
+  <p>
+    Seção final com <strong>grid de duas colunas</strong>: links de contato à esquerda
+    e formulário de mensagem à direita.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Links de Contato</h4>
+      <p>Email, GitHub e LinkedIn com ícones simbólicos e efeito de translação
+      horizontal no hover (<code>translateX(6px)</code>).</p>
+    </div>
+    <div class="card amber-top">
+      <h4>Formulário</h4>
+      <p>Campos Nome, Email e Mensagem com estilo dark. O submit usa
+      <code>(submit)="$event.preventDefault()"</code> — pronto para conectar
+      a um serviço de email.</p>
+    </div>
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Botão com Clip-path</h3>
+
+  <p>O botão de envio usa <code>clip-path: polygon()</code> para ter o canto
+  superior direito e inferior esquerdo cortados diagonalmente — detalhe estético
+  retro-futurista recorrente na UI:</p>
+
+  <pre>
+clip-path: polygon(
+  0 0,
+  calc(100% - 10px) 0,  <span class="cmt">/* corte superior direito */</span>
+  100% 10px,
+  100% 100%,
+  10px 100%,            <span class="cmt">/* corte inferior esquerdo */</span>
+  0 calc(100% - 10px)
+);</pre>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 10. HOME + ROTAS -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 10</span>
+    <h2>Página Home e Roteamento</h2>
+  </div>
+
+  <p>
+    A página <code>Home</code> é o "montador" — ela importa todos os componentes
+    e os coloca em sequência. Está associada à rota raiz <code>'/'</code>.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Fluxo Completo de Carregamento</h3>
+
+  <div class="flow" style="flex-wrap:wrap; gap: 4px;">
+    <div class="flow-box" style="font-size:10px;">Usuário acessa<br>localhost:4200</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="font-size:10px;">Angular Router<br>lê app.routes.ts</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box amber" style="font-size:10px;">Lazy load<br>home.ts</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box teal" style="font-size:10px;">Home monta<br>todos os componentes</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="font-size:10px;">Página<br>renderizada</div>
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Lazy Loading</h3>
+
+  <p>A rota usa <code>loadComponent</code> em vez de importar diretamente:</p>
+
+  <pre>
+{
+  path: <span class="str">''</span>,
+  <span class="key">loadComponent</span>: () =>
+    <span class="fn">import</span>(<span class="str">'./pages/home/home'</span>).<span class="fn">then</span>(m => m.<span class="key">Home</span>),
+}</pre>
+
+  <p>
+    Isso significa que o bundle da página Home (e todos seus componentes) só é
+    baixado quando o usuário acessa a rota — o bundle inicial fica menor e a
+    aplicação carrega mais rápido.
+  </p>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Resultado do Build</h3>
+
+  <table>
+    <thead><tr><th>Arquivo</th><th>Tipo</th><th>Tamanho</th></tr></thead>
+    <tbody>
+      <tr><td><code>main.js</code></td><td>Bundle principal (Angular core)</td><td>~424 KB</td></tr>
+      <tr><td><code>chunk-*.js</code></td><td>Dependências do framework</td><td>~840 KB</td></tr>
+      <tr><td><code>chunk-home.js</code></td><td>Página Home (lazy)</td><td>~68 KB</td></tr>
+      <tr><td><code>styles.css</code></td><td>CSS compilado global</td><td>~2.8 KB</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 11. BUILD E GIT -->
+<div class="page">
+  <div class="section-header">
+    <span class="section-num">// 11</span>
+    <h2>Build e Git</h2>
+  </div>
+
+  <h3 style="margin: 0 0 12px; font-size: 15px;">Comandos Essenciais</h3>
+
+  <table>
+    <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>ng serve</code></td><td>Inicia o servidor de dev em localhost:4200 com hot reload</td></tr>
+      <tr><td><code>ng build</code></td><td>Gera o build de produção em <code>dist/portfolio/</code></td></tr>
+      <tr><td><code>ng generate component nome</code></td><td>Cria um novo componente com todos os 4 arquivos</td></tr>
+      <tr><td><code>ng test</code></td><td>Roda os testes com Karma/Jasmine</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">Commits Criados</h3>
+
+  <div class="diagram">
+<span class="amber">commit 8dafca9</span>  <span class="muted">← HEAD (atual)</span>
+│  chore: adiciona configurações do VSCode ao repositório
+│
+<span class="amber">commit 033b1d5</span>
+   feat: portfólio Angular inicial com estética retrô espacial Cowboy Bebop
+  </div>
+
+  <h3 style="margin: 24px 0 12px; font-size: 15px;">O que o .gitignore exclui</h3>
+
+  <table>
+    <thead><tr><th>Padrão ignorado</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr><td><code>/node_modules</code></td><td>Dependências (podem ser reinstaladas com npm install)</td></tr>
+      <tr><td><code>/dist</code></td><td>Output do build (gerado pelo CI/CD ou localmente)</td></tr>
+      <tr><td><code>/.angular/cache</code></td><td>Cache interno do Angular CLI</td></tr>
+      <tr><td><code>.vscode/*</code> (maioria)</td><td>Configurações pessoais do editor — exceto os 5 arquivos permitidos</td></tr>
+    </tbody>
+  </table>
+
+  <hr/>
+
+  
+</div>
+
+</body>
+</html>

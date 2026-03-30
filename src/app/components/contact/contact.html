@@ -11,39 +11,65 @@
         </p>
 
         <div class="contact-links">
-          <a href="mailto:seuemail@email.com" class="contact-item">
+          <a href="mailto:raulgoncalves.oliveira21@gmail.com" class="contact-item">
             <span class="item-icon">✉</span>
             <span class="item-label">EMAIL</span>
-            <span class="item-value">seuemail&#64;email.com</span>
+            <span class="item-value">raulgoncalves.oliveira21@gmail.com</span>
           </a>
-          <a href="https://github.com/seugithub" target="_blank" class="contact-item">
+          <a href="https://github.com/Raulgonc" target="_blank" class="contact-item">
             <span class="item-icon">⌥</span>
             <span class="item-label">GITHUB</span>
-            <span class="item-value">&#64;seugithub</span>
+            <span class="item-value">&#64;Raulgonc</span>
           </a>
-          <a href="https://linkedin.com/in/seulinkedin" target="_blank" class="contact-item">
+          <a href="https://www.linkedin.com/in/raul-gonc-dev/" target="_blank" class="contact-item">
             <span class="item-icon">◈</span>
             <span class="item-label">LINKEDIN</span>
-            <span class="item-value">&#64;seulinkedin</span>
+            <span class="item-value">raul-gonc-dev</span>
           </a>
         </div>
       </div>
 
-      <form class="contact-form" (submit)="$event.preventDefault()">
+      <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="form-group">
           <label class="form-label">NOME</label>
-          <input class="form-input" type="text" placeholder="Seu nome" />
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Seu nome"
+            [(ngModel)]="nome"
+            name="nome"
+            required
+          />
         </div>
         <div class="form-group">
           <label class="form-label">EMAIL</label>
-          <input class="form-input" type="email" placeholder="seu@email.com" />
+          <input
+            class="form-input"
+            type="email"
+            placeholder="seu@email.com"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
         </div>
         <div class="form-group">
           <label class="form-label">MENSAGEM</label>
-          <textarea class="form-input form-textarea" placeholder="Sua mensagem..."></textarea>
+          <textarea
+            class="form-input form-textarea"
+            placeholder="Sua mensagem..."
+            [(ngModel)]="mensagem"
+            name="mensagem"
+            required
+          ></textarea>
         </div>
-        <button type="submit" class="btn-primary">
-          Enviar Transmissão
+
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="contactForm.invalid"
+          [class.sent]="enviado"
+        >
+          {{ enviado ? '✓ Transmissão enviada!' : 'Enviar Transmissão' }}
         </button>
       </form>
     </div>
