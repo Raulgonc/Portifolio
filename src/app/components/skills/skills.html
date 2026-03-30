@@ -1,0 +1,29 @@
+<section class="section" id="skills">
+  <div class="container">
+    <p class="section-title">Skills</p>
+    <div class="section-line"></div>
+
+    <div class="skills-grid">
+      @for (cat of categories; track cat) {
+        <div class="skill-category">
+          <h3 class="cat-title">
+            <span class="cat-bracket">&lt;</span>{{ cat }}<span class="cat-bracket">/&gt;</span>
+          </h3>
+          <div class="skill-list">
+            @for (skill of byCategory(cat); track skill.name) {
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-pct">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" [style.width.%]="skill.level"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

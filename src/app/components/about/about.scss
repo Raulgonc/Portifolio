@@ -1,0 +1,104 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.about-intro {
+  font-size: 1rem;
+  color: var(--cream);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.about-secondary {
+  font-size: 0.9rem;
+  color: var(--muted-light);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.about-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-row {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  align-items: baseline;
+}
+
+.detail-label {
+  color: var(--amber);
+  letter-spacing: 0.15em;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  color: var(--muted-light);
+
+  &.available {
+    color: var(--teal-light);
+    &::before {
+      content: '● ';
+      color: var(--teal-light);
+    }
+  }
+}
+
+/* Terminal card */
+.about-card {
+  background: var(--nebula);
+  border: 1px solid rgba(232, 160, 32, 0.2);
+  border-top: 2px solid var(--amber-dim);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  overflow: hidden;
+}
+
+.card-header {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(232, 160, 32, 0.15);
+}
+
+.card-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  &.red    { background: #e04030; }
+  &.yellow { background: var(--amber); }
+  &.green  { background: #30b060; }
+}
+
+.card-title {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.card-code {
+  padding: 24px;
+  line-height: 1.8;
+  white-space: pre;
+
+  .key  { color: var(--teal-light); }
+  .str  { color: var(--amber-glow); }
+  .num  { color: var(--rust-light); }
+  .bool { color: var(--amber); }
+}

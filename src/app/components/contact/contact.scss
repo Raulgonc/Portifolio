@@ -1,0 +1,136 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 80px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.contact-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  color: var(--cream);
+  line-height: 1.4;
+  margin-bottom: 48px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: transform 0.2s;
+  font-family: var(--font-mono);
+
+  &:hover {
+    transform: translateX(6px);
+    .item-value { color: var(--amber-glow); }
+  }
+}
+
+.item-icon {
+  font-size: 1rem;
+  color: var(--amber);
+  width: 20px;
+  text-align: center;
+}
+
+.item-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  min-width: 70px;
+}
+
+.item-value {
+  font-size: 0.85rem;
+  color: var(--cream);
+  transition: color 0.2s;
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--amber);
+}
+
+.form-input {
+  background: var(--nebula);
+  border: 1px solid rgba(232, 160, 32, 0.2);
+  color: var(--cream);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &::placeholder { color: var(--muted); }
+
+  &:focus {
+    border-color: var(--amber-dim);
+    box-shadow: 0 0 0 2px rgba(232, 160, 32, 0.08);
+  }
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn-primary {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--space-black);
+  background: var(--amber);
+  border: none;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  align-self: flex-start;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+
+  &:hover {
+    background: var(--amber-glow);
+    box-shadow: 0 0 20px rgba(232, 160, 32, 0.4);
+  }
+}
+
+/* Footer */
+.footer-line {
+  border-top: 1px solid rgba(232, 160, 32, 0.1);
+  padding-top: 32px;
+  text-align: center;
+}
+
+.footer-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}

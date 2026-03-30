@@ -1,0 +1,57 @@
+<section class="section" id="contact">
+  <div class="container">
+    <p class="section-title">Contact</p>
+    <div class="section-line"></div>
+
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="contact-lead">
+          Pronto para embarcar num novo projeto?<br>
+          Transmita sua mensagem.
+        </p>
+
+        <div class="contact-links">
+          <a href="mailto:seuemail@email.com" class="contact-item">
+            <span class="item-icon">✉</span>
+            <span class="item-label">EMAIL</span>
+            <span class="item-value">seuemail&#64;email.com</span>
+          </a>
+          <a href="https://github.com/seugithub" target="_blank" class="contact-item">
+            <span class="item-icon">⌥</span>
+            <span class="item-label">GITHUB</span>
+            <span class="item-value">&#64;seugithub</span>
+          </a>
+          <a href="https://linkedin.com/in/seulinkedin" target="_blank" class="contact-item">
+            <span class="item-icon">◈</span>
+            <span class="item-label">LINKEDIN</span>
+            <span class="item-value">&#64;seulinkedin</span>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" (submit)="$event.preventDefault()">
+        <div class="form-group">
+          <label class="form-label">NOME</label>
+          <input class="form-input" type="text" placeholder="Seu nome" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">EMAIL</label>
+          <input class="form-input" type="email" placeholder="seu@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">MENSAGEM</label>
+          <textarea class="form-input form-textarea" placeholder="Sua mensagem..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary">
+          Enviar Transmissão
+        </button>
+      </form>
+    </div>
+
+    <div class="footer-line">
+      <span class="footer-text">
+        &copy; 2025 — Crafted somewhere in the solar system.
+      </span>
+    </div>
+  </div>
+</section>

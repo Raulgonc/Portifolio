@@ -1,0 +1,106 @@
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--nebula);
+  border: 1px solid rgba(232, 160, 32, 0.12);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: rgba(232, 160, 32, 0.35);
+    transform: translateY(-3px);
+
+    &::after {
+      border-color: rgba(232, 160, 32, 0.08);
+    }
+  }
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-id {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+}
+
+.project-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+
+  &.live     { color: var(--teal-light); }
+  &.wip      { color: var(--amber); }
+  &.archived { color: var(--muted); }
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+}
+
+.project-desc {
+  font-size: 0.85rem;
+  color: var(--muted-light);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--amber-dim);
+  border: 1px solid rgba(138, 90, 16, 0.5);
+  padding: 3px 10px;
+  text-transform: uppercase;
+}
+
+.card-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.card-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover { color: var(--amber-glow); }
+  &.muted { color: var(--muted-light); &:hover { color: var(--cream); } }
+}

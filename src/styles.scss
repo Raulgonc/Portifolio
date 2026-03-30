@@ -1,0 +1,149 @@
+/* ===== COWBOY BEBOP – RETRO SPACE PALETTE ===== */
+:root {
+  --space-black:   #06060f;
+  --deep-space:    #0c0c1e;
+  --nebula:        #12122e;
+  --amber:         #e8a020;
+  --amber-glow:    #f5c842;
+  --amber-dim:     #8a5a10;
+  --rust:          #b83020;
+  --rust-light:    #e04030;
+  --teal:          #1a7a8a;
+  --teal-light:    #30b4cc;
+  --cream:         #f0e6c8;
+  --muted:         #6a6a9a;
+  --muted-light:   #9a9abf;
+  --star-white:    #eeeeff;
+
+  --font-display:  'Orbitron', sans-serif;
+  --font-mono:     'Space Mono', monospace;
+  --font-bebas:    'Bebas Neue', sans-serif;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--space-black);
+  color: var(--cream);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+
+  /* Subtle scanline overlay */
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.07) 2px,
+      rgba(0, 0, 0, 0.07) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--amber-glow);
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--deep-space);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--amber-dim);
+  border-radius: 3px;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+
+  &::before {
+    content: '// ';
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.75em;
+  }
+}
+
+.section-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--amber), transparent);
+  margin-bottom: 56px;
+}
+
+.amber-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--amber);
+  border: 1px solid var(--amber-dim);
+  padding: 2px 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ===== GLOW ANIMATION ===== */
+@keyframes amber-pulse {
+  0%, 100% { text-shadow: 0 0 8px var(--amber), 0 0 20px rgba(232, 160, 32, 0.3); }
+  50%       { text-shadow: 0 0 14px var(--amber-glow), 0 0 40px rgba(232, 160, 32, 0.5); }
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96%           { opacity: 0.85; }
+  98%           { opacity: 0.95; }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}

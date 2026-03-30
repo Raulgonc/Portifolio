@@ -1,0 +1,37 @@
+<section class="section" id="projects">
+  <div class="container">
+    <p class="section-title">Projects</p>
+    <div class="section-line"></div>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.id) {
+        <div class="project-card">
+          <div class="card-top">
+            <span class="project-id">{{ project.id }}</span>
+            <span class="project-status" [class]="project.status">
+              {{ project.status === 'live' ? '● LIVE' : project.status === 'wip' ? '◐ WIP' : '○ ARCHIVED' }}
+            </span>
+          </div>
+
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+
+          <div class="project-tags">
+            @for (tag of project.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+
+          <div class="card-actions">
+            @if (project.link) {
+              <a [href]="project.link" target="_blank" class="card-link">↗ Ver projeto</a>
+            }
+            @if (project.repo) {
+              <a [href]="project.repo" target="_blank" class="card-link muted">⌥ Repositório</a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
