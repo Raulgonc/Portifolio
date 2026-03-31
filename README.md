@@ -1,59 +1,116 @@
-# Portfolio
+# Raul Gonçalves — Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
+> Portfólio pessoal desenvolvido com **Angular 19**, com estética retro-espacial inspirada em *Cowboy Bebop*. Projetos buscados em tempo real via API do GitHub.
 
-## Development server
+---
 
-To start a local development server, run:
+## Visão Geral
+
+Site de página única (SPA) que reúne apresentação pessoal, habilidades, projetos e contato. O design usa uma paleta de espaço profundo com destaques em âmbar, tipografia monospace e efeitos como scanlines e starfield animado no canvas.
+
+**Preview:** `https://raulgonc.github.io/Portifolio/`
+
+---
+
+## Stack
+
+| Tecnologia | Versão | Uso |
+|---|---|---|
+| Angular | 19 | Framework principal — Standalone Components, Signals |
+| TypeScript | 5.x | Linguagem — tipagem estática em todo o projeto |
+| SCSS | CSS3 | Estilização — design system com variáveis CSS nativas |
+| Angular Router | 19 | Roteamento com lazy loading |
+| HttpClient | 19 | Integração com API REST do GitHub |
+| Canvas API | HTML5 | Starfield animado na seção Hero |
+| Angular Forms | 19 | Formulário de contato com validação |
+| Google Fonts | — | Orbitron · Space Mono · Bebas Neue |
+
+---
+
+## Seções
+
+- **Hero** — Apresentação com starfield animado e nome em destaque
+- **About** — Bio, localização e card terminal com `profile.json`
+- **Skills** — Habilidades por categoria com barras de progresso
+- **Projects** — Repositórios públicos buscados ao vivo da API do GitHub
+- **Feito com** — Stack técnica usada na construção do próprio portfólio
+- **Contact** — Formulário funcional via `mailto` + links sociais
+
+---
+
+## Estrutura
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── navbar/
+│   │   ├── hero/
+│   │   ├── about/
+│   │   ├── skills/
+│   │   ├── projects/
+│   │   ├── tech-stack/
+│   │   └── contact/
+│   ├── pages/
+│   │   └── home/
+│   ├── services/
+│   │   └── github.ts
+│   ├── app.routes.ts
+│   └── app.config.ts
+├── styles.scss         ← design system global
+└── index.html          ← SEO, Open Graph, fontes
+```
+
+---
+
+## Rodando localmente
+
+**Pré-requisitos:** Node.js 18+ e Angular CLI instalados.
 
 ```bash
+# Clonar o repositório
+git clone https://github.com/Raulgonc/Portifolio.git
+cd Portifolio
+
+# Instalar dependências
+npm install
+
+# Iniciar servidor de desenvolvimento
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse `http://localhost:4200`
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Build de produção
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+O output é gerado em `dist/portfolio/`.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## SEO
 
-```bash
-ng test
-```
+- `lang="pt-BR"` no HTML
+- `meta description`, `keywords`, `author` e `robots`
+- `link canonical`
+- **Open Graph** — LinkedIn, WhatsApp, Facebook
+- **Twitter/X Card** — summary_large_image
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Contato
 
-```bash
-ng e2e
-```
+- **Email:** raulgoncalves.oliveira21@gmail.com
+- **GitHub:** [@Raulgonc](https://github.com/Raulgonc)
+- **LinkedIn:** [raul-gonc-dev](https://www.linkedin.com/in/raul-gonc-dev/)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<p align="center">
+  Desenvolvido por <strong>Raul Gonçalves</strong> — crafted somewhere in the solar system.
+</p>
