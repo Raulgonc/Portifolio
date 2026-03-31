@@ -1,0 +1,34 @@
+<section class="section" id="tech-stack">
+  <div class="container">
+    <p class="section-title">Feito com</p>
+    <div class="section-line"></div>
+
+    <p class="ts-intro">
+      Este portfólio não é apenas uma vitrine — é um projeto em si.
+      Cada tecnologia abaixo foi escolhida com propósito e aplicada na construção desta página.
+    </p>
+
+    <div class="ts-grid">
+      @for (tech of techs; track tech.name) {
+        <div class="ts-card">
+          <div class="ts-icon">{{ tech.icon }}</div>
+          <div class="ts-body">
+            <div class="ts-header">
+              <span class="ts-name">{{ tech.name }}</span>
+              <span class="ts-version">{{ tech.version }}</span>
+            </div>
+            <span class="ts-role">{{ tech.role }}</span>
+            <p class="ts-detail">{{ tech.detail }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="ts-footer">
+      <span class="ts-footer-label">Código-fonte disponível em</span>
+      <a href="https://github.com/Raulgonc/Portifolio" target="_blank" class="ts-repo-link">
+        ⌥ github.com/Raulgonc/Portifolio ↗
+      </a>
+    </div>
+  </div>
+</section>
