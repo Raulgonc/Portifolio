@@ -1,6 +1,6 @@
 # Raul Gonçalves — Portfolio
 
-> Portfólio pessoal desenvolvido com **Angular 19**, com estética retro-espacial inspirada em *Cowboy Bebop*. Projetos buscados em tempo real via API do GitHub.
+> Portfólio pessoal desenvolvido com **Angular 21**, com estética retro-espacial inspirada em *Cowboy Bebop*. Projetos buscados em tempo real via API do GitHub. Suporte a **PT/EN** com troca dinâmica de idioma.
 
 ---
 
@@ -16,13 +16,14 @@ Site de página única (SPA) que reúne apresentação pessoal, habilidades, pro
 
 | Tecnologia | Versão | Uso |
 |---|---|---|
-| Angular | 19 | Framework principal — Standalone Components, Signals |
+| Angular | 21 | Framework principal — Standalone Components, Signals |
 | TypeScript | 5.x | Linguagem — tipagem estática em todo o projeto |
 | SCSS | CSS3 | Estilização — design system com variáveis CSS nativas |
-| Angular Router | 19 | Roteamento com lazy loading |
-| HttpClient | 19 | Integração com API REST do GitHub |
+| Angular Router | 21 | Roteamento com lazy loading |
+| HttpClient | 21 | Integração com API REST do GitHub |
+| Angular Signals | 21 | Reatividade — toggle PT/EN sem bibliotecas externas |
 | Canvas API | HTML5 | Starfield animado na seção Hero |
-| Angular Forms | 19 | Formulário de contato com validação |
+| Angular Forms | 21 | Formulário de contato com validação |
 | Google Fonts | — | Orbitron · Space Mono · Bebas Neue |
 
 ---
@@ -35,6 +36,7 @@ Site de página única (SPA) que reúne apresentação pessoal, habilidades, pro
 - **Projects** — Repositórios públicos buscados ao vivo da API do GitHub
 - **Feito com** — Stack técnica usada na construção do próprio portfólio
 - **Contact** — Formulário funcional via `mailto` + links sociais
+- **Toggle PT/EN** — Botão no navbar para troca dinâmica de idioma (Português / English)
 
 ---
 
@@ -54,7 +56,8 @@ src/
 │   ├── pages/
 │   │   └── home/
 │   ├── services/
-│   │   └── github.ts
+│   │   ├── github.ts
+│   │   └── language.service.ts  ← toggle PT/EN via Signals
 │   ├── app.routes.ts
 │   └── app.config.ts
 ├── styles.scss         ← design system global
