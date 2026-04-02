@@ -1,4 +1,5 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +8,7 @@ import { Component, HostListener, signal } from '@angular/core';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
+  readonly translate = inject(LanguageService);
   scrolled = signal(false);
 
   @HostListener('window:scroll')

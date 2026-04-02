@@ -75,6 +75,42 @@
   }
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--amber-dim);
+  border-radius: 3px;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--muted-light);
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: var(--amber);
+  }
+
+  .lang-sep {
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  span.active {
+    color: var(--amber);
+    font-weight: 700;
+  }
+}
+
 .nav-status {
   display: flex;
   align-items: center;

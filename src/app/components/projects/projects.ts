@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { GithubService, GithubRepo } from '../../services/github';
+import { LanguageService } from '../../services/language.service';
 
 const LANG_COLORS: Record<string, string> = {
   TypeScript:  '#3178c6',
@@ -19,6 +20,7 @@ const LANG_COLORS: Record<string, string> = {
 })
 export class Projects implements OnInit {
   private github = inject(GithubService);
+  readonly translate = inject(LanguageService);
 
   repos = signal<GithubRepo[]>([]);
   loading = signal(true);
@@ -26,7 +28,7 @@ export class Projects implements OnInit {
 
   ngOnInit() {
     this.github.getRepos().subscribe({
-      next: data => {
+      next: (data: GithubRepo[]) => {
         this.repos.set(data);
         this.loading.set(false);
       },
@@ -42,6 +44,7 @@ export class Projects implements OnInit {
   }
 
   formatDate(iso: string): string {
-    return new Date(iso).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
+    const locale = this.translate.lang() === 'pt' ? 'pt-BR' : 'en-US';
+    return new Date(iso).toLocaleDateString(locale, { month: 'short', year: 'numeric' });
   }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 interface Skill {
   name: string;
@@ -13,6 +14,8 @@ interface Skill {
   styleUrl: './skills.scss',
 })
 export class Skills {
+  readonly translate = inject(LanguageService);
+
   categories = ['Frontend', 'Backend', 'Tools'];
 
   skills: Skill[] = [

@@ -5,15 +5,23 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">{{ translate.t('nav', 'about') }}</a></li>
+      <li><a href="#skills">{{ translate.t('nav', 'skills') }}</a></li>
+      <li><a href="#projects">{{ translate.t('nav', 'projects') }}</a></li>
+      <li><a href="#contact">{{ translate.t('nav', 'contact') }}</a></li>
     </ul>
 
-    <div class="nav-status">
-      <span class="status-dot"></span>
-      <span class="status-text">ONLINE</span>
+    <div class="nav-right">
+      <button class="lang-toggle" (click)="translate.toggle()" [attr.aria-label]="'Switch language'">
+        <span [class.active]="translate.lang() === 'pt'">PT</span>
+        <span class="lang-sep">|</span>
+        <span [class.active]="translate.lang() === 'en'">EN</span>
+      </button>
+
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span class="status-text">ONLINE</span>
+      </div>
     </div>
   </div>
 </nav>

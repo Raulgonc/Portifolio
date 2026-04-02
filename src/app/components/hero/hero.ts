@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-hero',
@@ -8,6 +9,8 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/co
 })
 export class Hero implements OnInit, OnDestroy {
   @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+
+  readonly translate = inject(LanguageService);
 
   private ctx!: CanvasRenderingContext2D;
   private stars: { x: number; y: number; r: number; speed: number; opacity: number }[] = [];

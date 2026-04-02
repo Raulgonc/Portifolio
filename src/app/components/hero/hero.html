@@ -2,7 +2,7 @@
   <canvas #canvas class="starfield"></canvas>
 
   <div class="hero-content">
-    <div class="hero-tag amber-tag">// TRANSMISSION RECEIVED</div>
+    <div class="hero-tag amber-tag">{{ translate.t('hero', 'tag') }}</div>
 
     <h1 class="hero-name">
       RAUL<br>
@@ -10,17 +10,17 @@
     </h1>
 
     <p class="hero-role">
-      <span class="role-prefix">&gt; </span>Frontend Developer
+      <span class="role-prefix">&gt; </span>{{ translate.t('hero', 'role') }}
       <span class="cursor">_</span>
     </p>
 
     <p class="hero-quote">
-      "Whatever happens, happens."
+      {{ translate.t('hero', 'quote') }}
     </p>
 
     <div class="hero-actions">
-      <a href="#projects" class="btn-primary">Ver Projetos</a>
-      <a href="#contact" class="btn-secondary">Contato</a>
+      <a href="#projects" class="btn-primary">{{ translate.t('hero', 'cta_projects') }}</a>
+      <a href="#contact" class="btn-secondary">{{ translate.t('hero', 'cta_contact') }}</a>
     </div>
 
     <div class="hero-coords">
@@ -33,7 +33,7 @@
   </div>
 
   <div class="hero-scroll-hint">
-    <span>SCROLL</span>
+    <span>{{ translate.t('hero', 'scroll') }}</span>
     <div class="scroll-line"></div>
   </div>
 </section>

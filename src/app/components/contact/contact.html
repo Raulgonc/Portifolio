@@ -1,13 +1,13 @@
 <section class="section" id="contact">
   <div class="container">
-    <p class="section-title">Contact</p>
+    <p class="section-title">{{ translate.t('contact', 'title') }}</p>
     <div class="section-line"></div>
 
     <div class="contact-grid">
       <div class="contact-left">
         <p class="contact-lead">
-          Pronto para embarcar num novo projeto?<br>
-          Transmita sua mensagem.
+          {{ translate.t('contact', 'lead_1') }}<br>
+          {{ translate.t('contact', 'lead_2') }}
         </p>
 
         <div class="contact-links">
@@ -31,18 +31,18 @@
 
       <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="form-group">
-          <label class="form-label">NOME</label>
+          <label class="form-label">{{ translate.t('contact', 'name_label') }}</label>
           <input
             class="form-input"
             type="text"
-            placeholder="Seu nome"
+            [placeholder]="translate.t('contact', 'name_placeholder')"
             [(ngModel)]="nome"
             name="nome"
             required
           />
         </div>
         <div class="form-group">
-          <label class="form-label">EMAIL</label>
+          <label class="form-label">{{ translate.t('contact', 'email_label') }}</label>
           <input
             class="form-input"
             type="email"
@@ -53,10 +53,10 @@
           />
         </div>
         <div class="form-group">
-          <label class="form-label">MENSAGEM</label>
+          <label class="form-label">{{ translate.t('contact', 'msg_label') }}</label>
           <textarea
             class="form-input form-textarea"
-            placeholder="Sua mensagem..."
+            [placeholder]="translate.t('contact', 'msg_placeholder')"
             [(ngModel)]="mensagem"
             name="mensagem"
             required
@@ -69,14 +69,14 @@
           [disabled]="contactForm.invalid"
           [class.sent]="enviado"
         >
-          {{ enviado ? '✓ Transmissão enviada!' : 'Enviar Transmissão' }}
+          {{ enviado ? translate.t('contact', 'btn_sent') : translate.t('contact', 'btn_send') }}
         </button>
       </form>
     </div>
 
     <div class="footer-line">
       <span class="footer-text">
-        &copy; 2025 — Crafted somewhere in the solar system.
+        {{ translate.t('contact', 'footer') }}
       </span>
     </div>
   </div>

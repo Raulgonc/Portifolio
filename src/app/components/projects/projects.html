@@ -1,6 +1,6 @@
 <section class="section" id="projects">
   <div class="container">
-    <p class="section-title">Projects</p>
+    <p class="section-title">{{ translate.t('projects', 'title') }}</p>
     <div class="section-line"></div>
 
     <!-- Loading -->
@@ -21,8 +21,8 @@
     @if (error()) {
       <div class="projects-error">
         <span class="error-icon">⚠</span>
-        <p>Falha na conexão com a API do GitHub.<br>
-        <a href="https://github.com/Raulgonc" target="_blank">Ver projetos diretamente no GitHub ↗</a></p>
+        <p>{{ translate.t('projects', 'error') }}<br>
+        <a href="https://github.com/Raulgonc" target="_blank">{{ translate.t('projects', 'github_link') }}</a></p>
       </div>
     }
 
@@ -39,7 +39,7 @@
             <h3 class="project-title">{{ repo.name }}</h3>
 
             <p class="project-desc">
-              {{ repo.description || 'Sem descrição.' }}
+              {{ repo.description || translate.t('projects', 'no_desc') }}
             </p>
 
             <div class="project-footer">
@@ -53,7 +53,7 @@
             </div>
 
             <a [href]="repo.html_url" target="_blank" class="card-link">
-              Ver repositório ↗
+              {{ translate.t('projects', 'repo_link') }}
             </a>
           </div>
         }
