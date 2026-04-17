@@ -1,83 +1,157 @@
-<section class="section" id="contact">
+<section class="section" id="orcamento">
   <div class="container">
-    <p class="section-title">{{ translate.t('contact', 'title') }}</p>
-    <div class="section-line"></div>
+    <p class="section-eyebrow">{{ translate.t('contact', 'eyebrow') }}</p>
+    <h2 class="section-title">{{ translate.t('contact', 'title') }}</h2>
+    <p class="section-subtitle">{{ translate.t('contact', 'subtitle') }}</p>
 
     <div class="contact-grid">
-      <div class="contact-left">
-        <p class="contact-lead">
-          {{ translate.t('contact', 'lead_1') }}<br>
-          {{ translate.t('contact', 'lead_2') }}
-        </p>
-
-        <div class="contact-links">
-          <a href="mailto:raulgoncalves.oliveira21@gmail.com" class="contact-item">
-            <span class="item-icon">✉</span>
-            <span class="item-label">EMAIL</span>
-            <span class="item-value">raulgoncalves.oliveira21@gmail.com</span>
-          </a>
-          <a href="https://github.com/Raulgonc" target="_blank" class="contact-item">
-            <span class="item-icon">⌥</span>
-            <span class="item-label">GITHUB</span>
-            <span class="item-value">&#64;Raulgonc</span>
-          </a>
-          <a href="https://www.linkedin.com/in/raul-gonc-dev/" target="_blank" class="contact-item">
-            <span class="item-icon">◈</span>
-            <span class="item-label">LINKEDIN</span>
-            <span class="item-value">raul-gonc-dev</span>
-          </a>
+      <!-- Info sidebar -->
+      <div class="contact-info">
+        <h3 class="contact-info-title">{{ translate.t('contact', 'info_title') }}</h3>
+        <div class="contact-info-items">
+          <div class="contact-info-item">
+            <span class="contact-info-icon">✉</span>
+            <div>
+              <span class="contact-info-label">{{ translate.t('contact', 'info_email') }}</span>
+              <a href="mailto:raulgonc4@gmail.com" class="contact-info-value">raulgonc4@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-icon">⏱</span>
+            <div>
+              <span class="contact-info-label">{{ translate.t('contact', 'info_response') }}</span>
+              <span class="contact-info-value">{{ translate.t('contact', 'info_response_value') }}</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-icon">💬</span>
+            <div>
+              <span class="contact-info-value contact-info-note">{{ translate.t('contact', 'info_whatsapp') }}</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
-        <div class="form-group">
-          <label class="form-label">{{ translate.t('contact', 'name_label') }}</label>
-          <input
-            class="form-input"
-            type="text"
-            [placeholder]="translate.t('contact', 'name_placeholder')"
-            [(ngModel)]="nome"
-            name="nome"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label class="form-label">{{ translate.t('contact', 'email_label') }}</label>
-          <input
-            class="form-input"
-            type="email"
-            placeholder="seu@email.com"
-            [(ngModel)]="email"
-            name="email"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label class="form-label">{{ translate.t('contact', 'msg_label') }}</label>
-          <textarea
-            class="form-input form-textarea"
-            [placeholder]="translate.t('contact', 'msg_placeholder')"
-            [(ngModel)]="mensagem"
-            name="mensagem"
-            required
-          ></textarea>
+      <!-- Tabbed form -->
+      <div class="contact-form-wrapper">
+        <!-- Tabs -->
+        <div class="form-tabs">
+          <button class="form-tab" [class.active]="activeTab === 'message'" (click)="setTab('message')">
+            {{ translate.t('contact', 'tab_message') }}
+          </button>
+          <button class="form-tab" [class.active]="activeTab === 'quote'" (click)="setTab('quote')">
+            {{ translate.t('contact', 'tab_quote') }}
+          </button>
         </div>
 
-        <button
-          type="submit"
-          class="btn-primary"
-          [disabled]="contactForm.invalid"
-          [class.sent]="enviado"
-        >
-          {{ enviado ? translate.t('contact', 'btn_sent') : translate.t('contact', 'btn_send') }}
-        </button>
-      </form>
-    </div>
+        <!-- Success state -->
+        @if (status === 'sent') {
+          <div class="form-success">
+            <span class="form-success-icon">✓</span>
+            <strong>{{ translate.t('contact', 'success_title') }}</strong>
+            <p>{{ translate.t('contact', 'success_msg') }}</p>
+          </div>
+        }
 
-    <div class="footer-line">
-      <span class="footer-text">
-        {{ translate.t('contact', 'footer') }}
-      </span>
+        <!-- Message Tab -->
+        @if (activeTab === 'message' && status !== 'sent') {
+          <form class="contact-form" (ngSubmit)="onSubmitMessage()" #msgForm="ngForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'name_label') }}</label>
+                <input class="form-input" type="text"
+                  [placeholder]="translate.t('contact', 'name_placeholder')"
+                  [(ngModel)]="nome" name="nome" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'email_label') }}</label>
+                <input class="form-input" type="email"
+                  [placeholder]="translate.t('contact', 'email_placeholder')"
+                  [(ngModel)]="email" name="email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">{{ translate.t('contact', 'phone_label') }}</label>
+              <input class="form-input" type="tel"
+                [placeholder]="translate.t('contact', 'phone_placeholder')"
+                [(ngModel)]="telefone" name="telefone" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">{{ translate.t('contact', 'message_label') }}</label>
+              <textarea class="form-input form-textarea"
+                [placeholder]="translate.t('contact', 'message_placeholder')"
+                [(ngModel)]="mensagem" name="mensagem" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" [disabled]="msgForm.invalid || status === 'sending'">
+              {{ translate.t('contact', status === 'sending' ? 'btn_sending' : 'btn_send') }}
+            </button>
+          </form>
+        }
+
+        <!-- Quote Tab -->
+        @if (activeTab === 'quote' && status !== 'sent') {
+          <form class="contact-form" (ngSubmit)="onSubmitQuote()" #quoteForm="ngForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'name_label') }}</label>
+                <input class="form-input" type="text"
+                  [placeholder]="translate.t('contact', 'name_placeholder')"
+                  [(ngModel)]="quoteNome" name="quoteNome" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'email_label') }}</label>
+                <input class="form-input" type="email"
+                  [placeholder]="translate.t('contact', 'email_placeholder')"
+                  [(ngModel)]="quoteEmail" name="quoteEmail" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'company_label') }}</label>
+                <input class="form-input" type="text"
+                  [placeholder]="translate.t('contact', 'company_placeholder')"
+                  [(ngModel)]="empresa" name="empresa" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'service_label') }}</label>
+                <select class="form-input form-select"
+                  [(ngModel)]="servico" name="servico" required>
+                  <option value="" disabled selected>{{ translate.t('contact', 'service_placeholder') }}</option>
+                  <option value="landing">{{ translate.t('contact', 'service_landing') }}</option>
+                  <option value="institutional">{{ translate.t('contact', 'service_institutional') }}</option>
+                  <option value="ecommerce">{{ translate.t('contact', 'service_ecommerce') }}</option>
+                  <option value="redesign">{{ translate.t('contact', 'service_redesign') }}</option>
+                  <option value="maintenance">{{ translate.t('contact', 'service_maintenance') }}</option>
+                  <option value="other">{{ translate.t('contact', 'service_other') }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'budget_label') }}</label>
+                <input class="form-input" type="text"
+                  [placeholder]="translate.t('contact', 'budget_placeholder')"
+                  [(ngModel)]="orcamento" name="orcamento" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ translate.t('contact', 'deadline_label') }}</label>
+                <input class="form-input" type="text"
+                  [placeholder]="translate.t('contact', 'deadline_placeholder')"
+                  [(ngModel)]="prazo" name="prazo" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">{{ translate.t('contact', 'brief_label') }}</label>
+              <textarea class="form-input form-textarea form-textarea-lg"
+                [placeholder]="translate.t('contact', 'brief_placeholder')"
+                [(ngModel)]="brief" name="brief" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" [disabled]="quoteForm.invalid || status === 'sending'">
+              {{ translate.t('contact', status === 'sending' ? 'btn_sending' : 'btn_quote') }}
+            </button>
+          </form>
+        }
+      </div>
     </div>
   </div>
 </section>

@@ -1,0 +1,178 @@
+<app-navbar />
+
+<!-- Hero -->
+<section class="dev-hero">
+  <div class="container">
+    <p class="section-eyebrow">{{ translate.t('dev', 'eyebrow') }}</p>
+    <h1 class="dev-hero-title">{{ translate.t('dev', 'title') }}</h1>
+    <p class="dev-hero-subtitle">{{ translate.t('dev', 'subtitle') }}</p>
+    <div class="dev-hero-badges">
+      <span class="dev-available-badge">
+        <span class="dev-available-dot"></span>
+        {{ translate.t('dev', 'available') }}
+      </span>
+      <span class="dev-badge">São Paulo, BR</span>
+      <span class="dev-badge">ADS · Senac · 2027</span>
+    </div>
+    <div class="dev-hero-cta">
+      <a href="/cv-raul-goncalves.pdf" download class="btn-primary">
+        ↓ {{ translate.t('dev', 'cv_btn') }}
+      </a>
+      <a href="mailto:raulgonc4@gmail.com" class="btn-secondary">
+        {{ translate.t('dev', 'contact_cta') }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section dev-about-section">
+  <div class="container">
+    <div class="dev-about-grid">
+      <div class="dev-about-photo-wrap">
+        <img src="/Foto_profissional.jpeg" alt="Raul Gonçalves" class="dev-about-photo" />
+      </div>
+      <div class="dev-about-content">
+        <p class="section-eyebrow">{{ isPt ? 'Sobre mim' : 'About me' }}</p>
+        <h2 class="dev-about-title">{{ isPt ? 'Código com olhar de diretor' : 'Code with a director\'s eye' }}</h2>
+        <p class="dev-about-p">
+          {{ isPt
+            ? 'Comecei minha carreira no audiovisual — trabalhando com produção, edição e fotografia. Esse período me ensinou algo que nenhum tutorial de programação ensina: a importância de cada detalhe visual, de como a composição guia o olhar e de como a história de uma marca precisa ser contada com consistência.'
+            : 'I started my career in audiovisual production — working with video editing and photography. That period taught me something no programming tutorial does: the importance of every visual detail, how composition guides the eye, and how a brand\'s story must be told with consistency.'
+          }}
+        </p>
+        <p class="dev-about-p">
+          {{ isPt
+            ? 'Quando migrei para o desenvolvimento web, trouxe esse repertório comigo. Hoje construo interfaces em Angular e React, APIs em Node.js e Python, e entrego o produto de ponta a ponta. Sou estudante de Análise e Desenvolvimento de Sistemas no Senac, com conclusão prevista para 2027.'
+            : 'When I moved into web development, I brought that background with me. Today I build interfaces in Angular and React, APIs with Node.js and Python, and deliver the full product end to end. I\'m pursuing a degree in Systems Analysis and Development at Senac, graduating in 2027.'
+          }}
+        </p>
+        <div class="dev-about-detail-row">
+          <span class="dev-about-detail"><strong>{{ isPt ? 'Formação' : 'Background' }}</strong> Cinema & Audiovisual + ADS</span>
+          <span class="dev-about-detail"><strong>{{ isPt ? 'Inglês' : 'English' }}</strong> {{ isPt ? 'Avançado' : 'Advanced' }}</span>
+          <span class="dev-about-detail"><strong>{{ isPt ? 'Base' : 'Based in' }}</strong> São Paulo, BR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stack -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">{{ translate.t('dev', 'stack_eyebrow') }}</p>
+    <h2 class="section-title">{{ translate.t('dev', 'stack_title') }}</h2>
+    <div class="stack-grid">
+      @for (group of stack; track group.category) {
+        <div class="stack-group" [class.soon]="group.soon">
+          <h3 class="stack-category">
+            {{ group.category }}
+            @if (group.soon) {
+              <span class="stack-soon-badge">{{ translate.t('dev', 'coming_soon') }}</span>
+            }
+          </h3>
+          <div class="stack-techs">
+            @for (tech of group.techs; track tech) {
+              <span class="tech-tag" [class.tech-tag-soon]="group.soon">{{ tech }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section dev-projects-section">
+  <div class="container">
+    <p class="section-eyebrow">{{ translate.t('dev', 'projects_eyebrow') }}</p>
+    <h2 class="section-title">{{ translate.t('dev', 'projects_title') }}</h2>
+    <div class="projects-grid">
+      @for (proj of projects; track proj.title) {
+        <div class="project-card">
+          @if (proj.isThisSite) {
+            <span class="project-this-badge">← {{ isPt ? 'Este site' : 'This site' }}</span>
+          }
+          <h3 class="project-title">{{ proj.title }}</h3>
+          <p class="project-desc">{{ isPt ? proj.descPt : proj.descEn }}</p>
+          <div class="project-techs">
+            @for (tech of proj.techs; track tech) {
+              <span class="tech-tag tech-tag-sm">{{ tech }}</span>
+            }
+          </div>
+          @if (proj.url) {
+            <a [href]="proj.url" target="_blank" rel="noopener" class="project-link">
+              {{ translate.t('dev', 'view_project') }} ↗
+            </a>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">{{ translate.t('dev', 'experience_eyebrow') }}</p>
+    <h2 class="section-title">{{ translate.t('dev', 'experience_title') }}</h2>
+    <div class="timeline">
+      @for (exp of experience; track exp.company) {
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">{{ isPt ? exp.rolePt : exp.roleEn }}</h3>
+                <span class="timeline-company">{{ exp.company }}</span>
+              </div>
+              <span class="timeline-period">{{ isPt ? exp.period : exp.periodEn }}</span>
+            </div>
+            <ul class="timeline-bullets">
+              @for (bullet of (isPt ? exp.bulletsPt : exp.bulletsEn); track bullet) {
+                <li>{{ bullet }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Education + Languages -->
+<section class="section dev-edu-section">
+  <div class="container">
+    <div class="edu-grid">
+      <div>
+        <p class="section-eyebrow">{{ isPt ? 'Formação' : 'Education' }}</p>
+        <h2 class="section-title">{{ translate.t('dev', 'education_title') }}</h2>
+        <div class="edu-card">
+          <h3 class="edu-degree">{{ isPt ? 'Tecnólogo em Análise e Desenvolvimento de Sistemas' : 'Associate Degree in Systems Analysis and Development' }}</h3>
+          <span class="edu-school">Senac · São Paulo</span>
+          <span class="edu-period">{{ isPt ? 'Conclusão: 2027' : 'Expected: 2027' }}</span>
+        </div>
+      </div>
+      <div>
+        <p class="section-eyebrow">{{ isPt ? 'Idiomas' : 'Languages' }}</p>
+        <h2 class="section-title">{{ translate.t('dev', 'languages_title') }}</h2>
+        <div class="lang-list">
+          @for (lang of languages; track lang.name) {
+            <div class="lang-item">
+              <span class="lang-name">{{ isPt ? lang.name : lang.nameEn }}</span>
+              <span class="lang-level">{{ isPt ? lang.level : lang.levelEn }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-tagline">{{ translate.t('footer', 'tagline') }}</p>
+    <p class="footer-rights">{{ translate.t('footer', 'rights') }}</p>
+  </div>
+</footer>

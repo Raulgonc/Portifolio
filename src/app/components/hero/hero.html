@@ -1,39 +1,36 @@
 <section class="hero" id="hero">
-  <canvas #canvas class="starfield"></canvas>
+
+  <ngx-particles
+    [id]="particlesId"
+    [options]="particlesOptions"
+    [particlesInit]="particlesInit"
+    (particlesLoaded)="particlesLoaded($event)"
+    class="hero-particles">
+  </ngx-particles>
 
   <div class="hero-content">
-    <div class="hero-tag amber-tag">{{ translate.t('hero', 'tag') }}</div>
+    <img src="Logo_semFundo.png" alt="RGO Vision" class="hero-logo" />
 
-    <h1 class="hero-name">
-      RAUL<br>
-      <span class="hero-name-sub">GONÇALVES</span>
-    </h1>
-
-    <p class="hero-role">
-      <span class="role-prefix">&gt; </span>{{ translate.t('hero', 'role') }}
-      <span class="cursor">_</span>
-    </p>
-
-    <p class="hero-quote">
-      {{ translate.t('hero', 'quote') }}
-    </p>
+    <p class="hero-tagline">{{ translate.t('footer', 'tagline') }}</p>
 
     <div class="hero-actions">
-      <a href="#projects" class="btn-primary">{{ translate.t('hero', 'cta_projects') }}</a>
-      <a href="#contact" class="btn-secondary">{{ translate.t('hero', 'cta_contact') }}</a>
-    </div>
-
-    <div class="hero-coords">
-      <span>LAT 35.6762° N</span>
-      <span class="sep">|</span>
-      <span>LON 139.6503° E</span>
-      <span class="sep">|</span>
-      <span>ALT 400km</span>
+      <a routerLink="/clientes" class="hero-btn hero-btn-primary">
+        {{ translate.t('nav', 'clients') }}
+      </a>
+      <a routerLink="/dev" class="hero-btn hero-btn-secondary">
+        {{ translate.t('nav', 'dev') }}
+      </a>
     </div>
   </div>
 
-  <div class="hero-scroll-hint">
-    <span>{{ translate.t('hero', 'scroll') }}</span>
-    <div class="scroll-line"></div>
-  </div>
+  <a href="#sobre" class="hero-scroll">
+    <span class="hero-scroll-label">{{ translate.t('hero', 'scroll') }}</span>
+    <div class="hero-scroll-arrow">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </a>
+
 </section>

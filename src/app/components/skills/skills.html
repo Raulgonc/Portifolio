@@ -1,14 +1,10 @@
 <section class="section" id="skills">
   <div class="container">
-    <p class="section-title">{{ translate.t('skills', 'title') }}</p>
-    <div class="section-line"></div>
-
+    <p class="section-eyebrow">Habilidades</p>
     <div class="skills-grid">
       @for (cat of categories; track cat) {
         <div class="skill-category">
-          <h3 class="cat-title">
-            <span class="cat-bracket">&lt;</span>{{ cat }}<span class="cat-bracket">/&gt;</span>
-          </h3>
+          <h3 class="cat-title">{{ cat }}</h3>
           <div class="skill-list">
             @for (skill of byCategory(cat); track skill.name) {
               <div class="skill-item">

@@ -1,0 +1,90 @@
+<app-navbar />
+
+<!-- Page Hero -->
+<section class="clientes-hero">
+  <div class="container">
+    <p class="section-eyebrow">{{ translate.t('services', 'eyebrow') }}</p>
+    <h1 class="clientes-hero-title">{{ translate.t('services', 'title') }}</h1>
+    <p class="clientes-hero-subtitle">{{ translate.t('services', 'subtitle') }}</p>
+    <p class="clientes-currency-note">{{ translate.t('pricing', 'currency_note') }}</p>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="section clientes-services">
+  <div class="container">
+    <div class="services-grid">
+      @for (svc of services; track svc.key) {
+        <div class="service-card" [class.popular]="svc.popular">
+          @if (svc.popular) {
+            <div class="service-popular-badge">{{ translate.t('services', 'popular_badge') }}</div>
+          }
+          <div class="service-card-header">
+            <h3 class="service-title">{{ translate.t('services', $any(svc.key + '_title')) }}</h3>
+            <p class="service-desc">{{ translate.t('services', $any(svc.key + '_desc')) }}</p>
+          </div>
+
+          <div class="service-price-row">
+            <div>
+              <span class="service-price">
+                {{ svc.price }}
+                @if (svc.isMonthly) { <span class="service-price-suffix">{{ translate.t('services', 'per_month') }}</span> }
+              </span>
+              <span class="service-price-usd">{{ svc.usdPrice }}</span>
+            </div>
+            @if (!svc.isMonthly && svc.delivery) {
+              <div class="service-delivery">
+                <span class="service-delivery-label">{{ translate.t('services', 'delivery') }}</span>
+                {{ svc.delivery }} {{ translate.t('services', 'days') }}
+              </div>
+            }
+            @if (svc.isMonthly) {
+              <div class="service-delivery">{{ translate.t('services', 'contract') }}</div>
+            }
+          </div>
+
+          <ul class="service-features">
+            @for (feat of svc.features; track feat) {
+              <li class="service-feature-item">
+                <span class="service-feature-check">✓</span>
+                {{ translate.t('services', $any(feat)) }}
+              </li>
+            }
+          </ul>
+
+          <div class="service-card-cta">
+            <button class="btn-primary service-btn-hire" (click)="scrollToForm()">
+              {{ translate.t('services', 'cta_hire') }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Custom Project Banner -->
+<section class="section clientes-custom">
+  <div class="container">
+    <div class="custom-banner">
+      <div class="custom-banner-content">
+        <h3 class="custom-banner-title">{{ translate.t('pricing', 'custom_title') }}</h3>
+        <p class="custom-banner-desc">{{ translate.t('pricing', 'custom_desc') }}</p>
+      </div>
+      <button class="btn-secondary custom-banner-cta" (click)="scrollToForm()">
+        {{ translate.t('pricing', 'custom_cta') }} →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / Quote Form -->
+<app-contact [defaultTab]="'quote'" />
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-tagline">{{ translate.t('footer', 'tagline') }}</p>
+    <p class="footer-rights">{{ translate.t('footer', 'rights') }}</p>
+  </div>
+</footer>

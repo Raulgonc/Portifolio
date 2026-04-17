@@ -1,9 +1,7 @@
 <section class="section" id="projects">
   <div class="container">
-    <p class="section-title">{{ translate.t('projects', 'title') }}</p>
-    <div class="section-line"></div>
+    <p class="section-eyebrow">Projetos</p>
 
-    <!-- Loading -->
     @if (loading()) {
       <div class="projects-grid">
         @for (i of [1,2,3,4,5,6]; track i) {
@@ -11,37 +9,29 @@
             <div class="sk-line sk-short"></div>
             <div class="sk-line sk-long"></div>
             <div class="sk-line sk-medium"></div>
-            <div class="sk-line sk-short"></div>
           </div>
         }
       </div>
     }
 
-    <!-- Erro -->
     @if (error()) {
       <div class="projects-error">
-        <span class="error-icon">⚠</span>
-        <p>{{ translate.t('projects', 'error') }}<br>
-        <a href="https://github.com/Raulgonc" target="_blank">{{ translate.t('projects', 'github_link') }}</a></p>
+        <span>⚠</span>
+        <p>Falha ao carregar repositórios.<br>
+        <a href="https://github.com/Raulgonc" target="_blank">Ver no GitHub ↗</a></p>
       </div>
     }
 
-    <!-- Repos -->
     @if (!loading() && !error()) {
       <div class="projects-grid">
         @for (repo of repos(); track repo.id) {
           <div class="project-card">
             <div class="card-top">
-              <span class="project-id">{{ repo.stargazers_count }} ★</span>
-              <span class="project-forks">{{ repo.forks_count }} forks</span>
+              <span>{{ repo.stargazers_count }} ★</span>
+              <span>{{ repo.forks_count }} forks</span>
             </div>
-
             <h3 class="project-title">{{ repo.name }}</h3>
-
-            <p class="project-desc">
-              {{ repo.description || translate.t('projects', 'no_desc') }}
-            </p>
-
+            <p class="project-desc">{{ repo.description || 'Sem descrição.' }}</p>
             <div class="project-footer">
               @if (repo.language) {
                 <span class="project-lang">
@@ -49,12 +39,9 @@
                   {{ repo.language }}
                 </span>
               }
-              <span class="project-date">{{ formatDate(repo.updated_at) }}</span>
+              <span>{{ formatDate(repo.updated_at) }}</span>
             </div>
-
-            <a [href]="repo.html_url" target="_blank" class="card-link">
-              {{ translate.t('projects', 'repo_link') }}
-            </a>
+            <a [href]="repo.html_url" target="_blank" class="card-link">Ver repositório ↗</a>
           </div>
         }
       </div>

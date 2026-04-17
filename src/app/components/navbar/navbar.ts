@@ -1,9 +1,10 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })

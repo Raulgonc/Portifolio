@@ -1,52 +1,45 @@
-<section class="section" id="about">
+<section class="section" id="sobre">
   <div class="container">
-    <p class="section-title">{{ translate.t('about', 'title') }}</p>
-    <div class="section-line"></div>
+
+    <p class="section-eyebrow">{{ translate.t('about', 'eyebrow') }}</p>
+    <h2 class="section-title">{{ translate.t('about', 'title') }}</h2>
+    <p class="section-subtitle">{{ translate.t('about', 'subtitle') }}</p>
 
     <div class="about-grid">
-      <div class="about-text">
-        <p class="about-intro">
-          {{ translate.t('about', 'intro') }}
-        </p>
-        <p class="about-secondary">
-          {{ translate.t('about', 'secondary') }}
-        </p>
 
-        <div class="about-details">
-          <div class="detail-row">
-            <span class="detail-label">STATUS</span>
-            <span class="detail-value available">{{ translate.t('about', 'status_value') }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">LOCATION</span>
-            <span class="detail-value">{{ translate.t('about', 'location_value') }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">FOCUS</span>
-            <span class="detail-value">Frontend Development</span>
-          </div>
-        </div>
+      <!-- Empresa -->
+      <div class="about-block">
+        <h3 class="about-block-title">{{ translate.t('about', 'company_title') }}</h3>
+        <p class="about-block-text">{{ translate.t('about', 'company_p1') }}</p>
+        <p class="about-block-text">{{ translate.t('about', 'company_p2') }}</p>
+        <a routerLink="/clientes" class="about-cta">
+          {{ translate.t('about', 'cta_clients') }} →
+        </a>
       </div>
 
-      <div class="about-card">
-        <div class="card-header">
-          <span class="card-dot red"></span>
-          <span class="card-dot yellow"></span>
-          <span class="card-dot green"></span>
-          <span class="card-title">profile.json</span>
+      <!-- Fundador -->
+      <div class="about-block about-block-founder">
+        <p class="about-founder-eyebrow">{{ translate.t('about', 'founder_eyebrow') }}</p>
+        <h3 class="about-block-title">{{ translate.t('about', 'founder_title') }}</h3>
+        <p class="about-block-text">{{ translate.t('about', 'founder_p1') }}</p>
+        <p class="about-block-text">{{ translate.t('about', 'founder_p2') }}</p>
+
+        <div class="about-meta">
+          <span class="about-meta-item">
+            <span class="meta-dot meta-dot-green"></span>
+            {{ translate.t('about', 'founder_status') }}
+          </span>
+          <span class="about-meta-item">
+            <span class="meta-dot meta-dot-orange"></span>
+            {{ translate.t('about', 'founder_location') }}
+          </span>
         </div>
-        <pre class="card-code"><code>&#123;
-  <span class="key">"name"</span>: <span class="str">"Raul Gonçalves"</span>,
-  <span class="key">"role"</span>: <span class="str">"Frontend Developer"</span>,
-  <span class="key">"exp"</span>: <span class="num">3</span>,
-  <span class="key">"languages"</span>: [
-    <span class="str">"TypeScript"</span>,
-    <span class="str">"React"</span>,
-    <span class="str">"Angular"</span>
-  ],
-  <span class="key">"status"</span>: <span class="bool">true</span>
-&#125;</code></pre>
+
+        <a routerLink="/dev" class="about-cta about-cta-secondary">
+          {{ translate.t('about', 'cta_dev') }} →
+        </a>
       </div>
+
     </div>
   </div>
 </section>

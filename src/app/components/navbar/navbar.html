@@ -1,27 +1,24 @@
 <nav class="navbar" [class.scrolled]="scrolled()">
   <div class="nav-inner">
-    <a class="nav-logo" href="#hero">
-      <span class="logo-bracket">[</span>DEV<span class="logo-bracket">]</span>
+    <a class="nav-logo" routerLink="/">
+      <img src="Logo_semFundo.png" alt="RGO Vision" class="logo-img" />
     </a>
 
     <ul class="nav-links">
-      <li><a href="#about">{{ translate.t('nav', 'about') }}</a></li>
-      <li><a href="#skills">{{ translate.t('nav', 'skills') }}</a></li>
-      <li><a href="#projects">{{ translate.t('nav', 'projects') }}</a></li>
-      <li><a href="#contact">{{ translate.t('nav', 'contact') }}</a></li>
+      <li><a routerLink="/clientes" routerLinkActive="active">{{ translate.t('nav', 'clients') }}</a></li>
+      <li><a routerLink="/dev" routerLinkActive="active">{{ translate.t('nav', 'dev') }}</a></li>
     </ul>
 
     <div class="nav-right">
-      <button class="lang-toggle" (click)="translate.toggle()" [attr.aria-label]="'Switch language'">
+      <button class="lang-toggle" (click)="translate.toggle()" aria-label="Switch language">
         <span [class.active]="translate.lang() === 'pt'">PT</span>
         <span class="lang-sep">|</span>
         <span [class.active]="translate.lang() === 'en'">EN</span>
       </button>
 
-      <div class="nav-status">
-        <span class="status-dot"></span>
-        <span class="status-text">ONLINE</span>
-      </div>
+      <a routerLink="/clientes" fragment="orcamento" class="btn-primary btn-nav-cta">
+        {{ translate.t('nav', 'cta') }}
+      </a>
     </div>
   </div>
 </nav>
