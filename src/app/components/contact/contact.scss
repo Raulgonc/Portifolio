@@ -186,6 +186,23 @@
 }
 
 /* ── Success state ── */
+.form-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+}
+
+.form-banner-success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
 .form-success {
   display: flex;
   flex-direction: column;
@@ -209,6 +226,42 @@
   font-size: 2.5rem;
   color: var(--success);
   background: var(--success-bg);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-12) var(--space-8);
+  text-align: center;
+
+  strong {
+    font-size: 1.1rem;
+    color: #c0392b;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+
+    a {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+  }
+}
+
+.form-error-icon {
+  font-size: 2rem;
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.1);
   width: 64px;
   height: 64px;
   border-radius: 50%;

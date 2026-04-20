@@ -44,17 +44,26 @@
           </button>
         </div>
 
-        <!-- Success state -->
+        <!-- Success banner -->
         @if (status === 'sent') {
-          <div class="form-success">
-            <span class="form-success-icon">✓</span>
-            <strong>{{ translate.t('contact', 'success_title') }}</strong>
-            <p>{{ translate.t('contact', 'success_msg') }}</p>
+          <div class="form-banner form-banner-success">
+            <span>✓</span>
+            <span>{{ translate.t('contact', 'success_title') }} — {{ translate.t('contact', 'success_msg') }}</span>
+          </div>
+        }
+
+        <!-- Error state -->
+        @if (status === 'error') {
+          <div class="form-error">
+            <span class="form-error-icon">✕</span>
+            <strong>Erro ao enviar mensagem</strong>
+            <p>Tente novamente ou envie diretamente para <a href="mailto:raulgonc4@gmail.com">raulgonc4@gmail.com</a></p>
+            <button class="btn-ghost" (click)="status = 'idle'">Tentar novamente</button>
           </div>
         }
 
         <!-- Message Tab -->
-        @if (activeTab === 'message' && status !== 'sent') {
+        @if (activeTab === 'message') {
           <form class="contact-form" (ngSubmit)="onSubmitMessage()" #msgForm="ngForm">
             <div class="form-row">
               <div class="form-group">
@@ -89,7 +98,7 @@
         }
 
         <!-- Quote Tab -->
-        @if (activeTab === 'quote' && status !== 'sent') {
+        @if (activeTab === 'quote') {
           <form class="contact-form" (ngSubmit)="onSubmitQuote()" #quoteForm="ngForm">
             <div class="form-row">
               <div class="form-group">

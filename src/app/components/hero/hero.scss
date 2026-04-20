@@ -38,15 +38,15 @@
   align-items: center;
   text-align: center;
   padding: 0 var(--space-6);
-  padding-top: 80px; /* clear navbar */
-  gap: var(--space-8);
+  padding-top: 60px; /* clear navbar */
+  gap: var(--space-5);
 }
 
 /* ── Logo ── */
 .hero-logo {
-  height: 45vh;
+  height: 32vh;
   width: auto;
-  max-width: 70vw;
+  max-width: 60vw;
   object-fit: contain;
   filter: drop-shadow(0 6px 32px rgba(130,57,2,0.22));
 }
