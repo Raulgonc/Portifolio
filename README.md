@@ -1,14 +1,25 @@
-# Raul Gonçalves — Portfolio
+# RGO Vision — Site de Negócio
 
-> Portfólio pessoal desenvolvido com **Angular 21**, com estética retro-espacial inspirada em *Cowboy Bebop*. Projetos buscados em tempo real via API do GitHub. Suporte a **PT/EN** com troca dinâmica de idioma.
+> Site institucional e portfólio técnico da marca **RGO Vision**, desenvolvido em **Angular 21**. Duas audiências, três páginas, toggle **PT/EN** e catálogo de serviços com formulário de orçamento.
 
 ---
 
-## Visão Geral
+## Sobre o projeto
 
-Site de página única (SPA) que reúne apresentação pessoal, habilidades, projetos e contato. O design usa uma paleta de espaço profundo com destaques em âmbar, tipografia monospace e efeitos como scanlines e starfield animado no canvas.
+A RGO Vision é um estúdio de web design e desenvolvimento. Este site tem dois objetivos simultâneos:
 
-**Preview:** `https://raulgonc.github.io/Portifolio/`
+- **Capturar clientes freelance** — catálogo de serviços com preços fixos e formulário de orçamento
+- **Atrair recrutadores e oportunidades técnicas** — portfólio de desenvolvedor com stack, projetos e currículo
+
+---
+
+## Páginas
+
+| Rota | Audiência | Conteúdo |
+|------|-----------|----------|
+| `/` | Geral | Hero institucional, sobre a empresa e fundador, formulário de contato |
+| `/clientes` | Clientes | Catálogo de 5 serviços com preços, banner de projeto personalizado, formulário de orçamento |
+| `/dev` | Recrutadores | Bio, foto, stack técnica, projetos, timeline de experiência, educação, idiomas e download de CV |
 
 ---
 
@@ -16,27 +27,14 @@ Site de página única (SPA) que reúne apresentação pessoal, habilidades, pro
 
 | Tecnologia | Versão | Uso |
 |---|---|---|
-| Angular | 21 | Framework principal — Standalone Components, Signals |
+| Angular | 21 | Framework — Standalone Components, Signals, lazy routing |
 | TypeScript | 5.x | Linguagem — tipagem estática em todo o projeto |
-| SCSS | CSS3 | Estilização — design system com variáveis CSS nativas |
-| Angular Router | 21 | Roteamento com lazy loading |
-| HttpClient | 21 | Integração com API REST do GitHub |
-| Angular Signals | 21 | Reatividade — toggle PT/EN sem bibliotecas externas |
-| Canvas API | HTML5 | Starfield animado na seção Hero |
-| Angular Forms | 21 | Formulário de contato com validação |
-| Google Fonts | — | Orbitron · Space Mono · Bebas Neue |
-
----
-
-## Seções
-
-- **Hero** — Apresentação com starfield animado e nome em destaque
-- **About** — Bio, localização e card terminal com `profile.json`
-- **Skills** — Habilidades por categoria com barras de progresso
-- **Projects** — Repositórios públicos buscados ao vivo da API do GitHub
-- **Feito com** — Stack técnica usada na construção do próprio portfólio
-- **Contact** — Formulário funcional via `mailto` + links sociais
-- **Toggle PT/EN** — Botão no navbar para troca dinâmica de idioma (Português / English)
+| SCSS | CSS3 | Design system com variáveis CSS (paleta laranja quente) |
+| Angular Router | 21 | 3 rotas com lazy loading |
+| Angular Signals | 21 | i18n PT/EN reativo sem biblioteca externa |
+| Angular Forms | 21 | Formulários de contato e orçamento com validação |
+| tsParticles | 3.x | Animação de partículas no hero (estilo PS3) |
+| Google Fonts | — | Inter · JetBrains Mono |
 
 ---
 
@@ -46,23 +44,39 @@ Site de página única (SPA) que reúne apresentação pessoal, habilidades, pro
 src/
 ├── app/
 │   ├── components/
-│   │   ├── navbar/
-│   │   ├── hero/
-│   │   ├── about/
-│   │   ├── skills/
-│   │   ├── projects/
-│   │   ├── tech-stack/
-│   │   └── contact/
+│   │   ├── navbar/          ← logo, links, toggle PT/EN
+│   │   ├── hero/            ← animação tsParticles, logo, tagline
+│   │   ├── about/           ← sobre a empresa + card do fundador
+│   │   └── contact/         ← formulário com abas: mensagem / orçamento
 │   ├── pages/
-│   │   └── home/
+│   │   ├── home/            ← / — página principal
+│   │   ├── clientes/        ← /clientes — catálogo e orçamento
+│   │   └── dev/             ← /dev — portfólio técnico
 │   ├── services/
-│   │   ├── github.ts
-│   │   └── language.service.ts  ← toggle PT/EN via Signals
+│   │   └── language.service.ts  ← ~150 chaves PT/EN via Signals
 │   ├── app.routes.ts
 │   └── app.config.ts
-├── styles.scss         ← design system global
-└── index.html          ← SEO, Open Graph, fontes
+├── styles.scss              ← design system global
+├── index.html               ← SEO, Open Graph, Schema.org
+public/
+├── Logo_semFundo.png
+├── Foto_profissional.jpeg
+└── cv-raul-goncalves.pdf
 ```
+
+---
+
+## Serviços (catálogo)
+
+| Serviço | Preço | Prazo |
+|---------|-------|-------|
+| Landing Page | R$ 699 | 5–7 dias úteis |
+| Site Institucional | R$ 1.799 | 10–15 dias úteis |
+| E-commerce | R$ 2.999 | 15–25 dias úteis |
+| Redesign de Site | R$ 999 | 7–10 dias úteis |
+| Manutenção Mensal | R$ 399/mês | Contrato |
+
+*Cotação em USD disponível para clientes internacionais.*
 
 ---
 
@@ -71,14 +85,9 @@ src/
 **Pré-requisitos:** Node.js 18+ e Angular CLI instalados.
 
 ```bash
-# Clonar o repositório
 git clone https://github.com/Raulgonc/Portifolio.git
 cd Portifolio
-
-# Instalar dependências
 npm install
-
-# Iniciar servidor de desenvolvimento
 ng serve
 ```
 
@@ -92,28 +101,18 @@ Acesse `http://localhost:4200`
 ng build
 ```
 
-O output é gerado em `dist/portfolio/`.
-
----
-
-## SEO
-
-- `lang="pt-BR"` no HTML
-- `meta description`, `keywords`, `author` e `robots`
-- `link canonical`
-- **Open Graph** — LinkedIn, WhatsApp, Facebook
-- **Twitter/X Card** — summary_large_image
+Output gerado em `dist/portfolio/`.
 
 ---
 
 ## Contato
 
-- **Email:** raulgoncalves.oliveira21@gmail.com
+- **Email:** raulgonc4@gmail.com
 - **GitHub:** [@Raulgonc](https://github.com/Raulgonc)
 - **LinkedIn:** [raul-gonc-dev](https://www.linkedin.com/in/raul-gonc-dev/)
 
 ---
 
 <p align="center">
-  Desenvolvido por <strong>Raul Gonçalves</strong> — crafted somewhere in the solar system.
+  Desenvolvido por <strong>Raul Gonçalves</strong> · RGO Vision · São Paulo, Brasil
 </p>
