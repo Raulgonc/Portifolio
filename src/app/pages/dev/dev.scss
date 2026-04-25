@@ -254,17 +254,45 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  padding: var(--space-7);
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  overflow: hidden;
   cursor: pointer;
   transition: border-color var(--transition), transform var(--transition);
 
   &:hover {
     border-color: var(--border-hover);
     transform: translateY(-3px);
+
+    .project-card-preview img {
+      transform: scale(1.04);
+    }
   }
+}
+
+.project-card-preview {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-primary);
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+}
+
+.project-card-body {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
 }
 
 .project-card-top {

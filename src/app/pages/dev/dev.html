@@ -90,23 +90,30 @@
     <div class="projects-grid">
       @for (proj of projects; track proj.title) {
         <div class="project-card" (click)="openProject(proj)">
-          @if (proj.isThisSite) {
-            <span class="project-this-badge">← {{ isPt ? 'Este site' : 'This site' }}</span>
+          @if (proj.images.length) {
+            <div class="project-card-preview">
+              <img [src]="proj.images[0]" [alt]="proj.title + ' preview'" />
+            </div>
           }
-          <div class="project-card-top">
-            <span class="project-type-tag">{{ isPt ? proj.typePt : proj.typeEn }}</span>
-            <span class="project-year-tag">{{ proj.year }}</span>
-          </div>
-          <h3 class="project-title">{{ proj.title }}</h3>
-          <p class="project-desc">{{ isPt ? proj.descPt : proj.descEn }}</p>
-          <div class="project-techs">
-            @for (tech of proj.techs; track tech) {
-              <span class="tech-tag tech-tag-sm">{{ tech }}</span>
+          <div class="project-card-body">
+            @if (proj.isThisSite) {
+              <span class="project-this-badge">← {{ isPt ? 'Este site' : 'This site' }}</span>
             }
+            <div class="project-card-top">
+              <span class="project-type-tag">{{ isPt ? proj.typePt : proj.typeEn }}</span>
+              <span class="project-year-tag">{{ proj.year }}</span>
+            </div>
+            <h3 class="project-title">{{ proj.title }}</h3>
+            <p class="project-desc">{{ isPt ? proj.descPt : proj.descEn }}</p>
+            <div class="project-techs">
+              @for (tech of proj.techs; track tech) {
+                <span class="tech-tag tech-tag-sm">{{ tech }}</span>
+              }
+            </div>
+            <span class="project-details-cta">
+              {{ isPt ? 'Ver detalhes' : 'See details' }} →
+            </span>
           </div>
-          <span class="project-details-cta">
-            {{ isPt ? 'Ver detalhes' : 'See details' }} →
-          </span>
         </div>
       }
     </div>
