@@ -147,7 +147,7 @@ export class DevPage {
         '/Projects/EntreLuzeSombra/03-avaliacoes.png',
         '/Projects/EntreLuzeSombra/04-blog.png',
         '/Projects/EntreLuzeSombra/05-blog-artigo.png',
-      ],
+      ], 
       highlightsPt: [
         'Projeto real para cliente — psicóloga Fernanda Letícia, CRP 06/178740',
         'Paleta rosa bebê e verde água, tipografia elegante e layout totalmente responsivo',
@@ -182,6 +182,11 @@ export class DevPage {
       longDescEn:
         'Full REST API for financial and product management, built with Node.js, TypeScript, Express and Prisma ORM. The project follows a layered architecture — controllers, services, routes, validators and middleware — with clear separation of concerns and a highly organized codebase.\n\nRobust data validation with Zod on all inputs, automatically generated interactive documentation with Swagger UI, and a PostgreSQL database managed by Prisma with versioned migrations. Strict TypeScript throughout the project ensures full typing of entities and API responses.',
       techs: ['Node.js', 'TypeScript', 'Express', 'Prisma', 'PostgreSQL', 'Zod', 'Swagger'],
+      images: [
+        '/Projects/projectManagment/01-home.png',
+        '/Projects/projectManagment/02-clean.png',
+        '/Projects/projectManagment/03-bar.png', 
+      ],
       highlightsPt: [
         'Arquitetura em camadas: controllers, services, routes, validators e middleware',
         'Validação de dados robusta com Zod em todas as entradas da API',
@@ -200,7 +205,6 @@ export class DevPage {
         'Centralized middleware for authentication and error handling',
         'Environment-variable config with .env.example included',
       ],
-      images: [],
       url: null,
       githubUrl: 'https://github.com/Raulgonc/Project-Management',
       isThisSite: false,
