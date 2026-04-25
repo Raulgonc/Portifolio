@@ -89,10 +89,14 @@
     <h2 class="section-title">{{ translate.t('dev', 'projects_title') }}</h2>
     <div class="projects-grid">
       @for (proj of projects; track proj.title) {
-        <div class="project-card">
+        <div class="project-card" (click)="openProject(proj)">
           @if (proj.isThisSite) {
             <span class="project-this-badge">← {{ isPt ? 'Este site' : 'This site' }}</span>
           }
+          <div class="project-card-top">
+            <span class="project-type-tag">{{ isPt ? proj.typePt : proj.typeEn }}</span>
+            <span class="project-year-tag">{{ proj.year }}</span>
+          </div>
           <h3 class="project-title">{{ proj.title }}</h3>
           <p class="project-desc">{{ isPt ? proj.descPt : proj.descEn }}</p>
           <div class="project-techs">
@@ -100,11 +104,9 @@
               <span class="tech-tag tech-tag-sm">{{ tech }}</span>
             }
           </div>
-          @if (proj.url) {
-            <a [href]="proj.url" target="_blank" rel="noopener" class="project-link">
-              {{ translate.t('dev', 'view_project') }} ↗
-            </a>
-          }
+          <span class="project-details-cta">
+            {{ isPt ? 'Ver detalhes' : 'See details' }} →
+          </span>
         </div>
       }
     </div>
@@ -176,3 +178,108 @@
     <p class="footer-rights">{{ translate.t('footer', 'rights') }}</p>
   </div>
 </footer>
+
+<!-- ── Project Modal ── -->
+@if (selectedProject()) {
+  <div class="modal-overlay" (click)="closeProject()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+
+      <!-- Sticky bar com botão fechar -->
+      <div class="modal-sticky-bar">
+        <button
+          class="modal-close-btn"
+          (click)="closeProject()"
+          [attr.aria-label]="isPt ? 'Fechar' : 'Close'"
+        >✕</button>
+      </div>
+
+      <!-- Cabeçalho -->
+      <div class="modal-header">
+        @if (selectedProject()!.isThisSite) {
+          <span class="project-this-badge">← {{ isPt ? 'Este site' : 'This site' }}</span>
+        }
+        <div class="modal-meta-row">
+          <span class="modal-type-label">{{ isPt ? selectedProject()!.typePt : selectedProject()!.typeEn }}</span>
+          <span class="modal-dot-sep">·</span>
+          <span class="modal-year-label">{{ selectedProject()!.year }}</span>
+        </div>
+        <h2 class="modal-title">{{ selectedProject()!.title }}</h2>
+      </div>
+
+      <!-- Galeria de imagens -->
+      @if (selectedProject()!.images.length) {
+        <div class="modal-gallery">
+          <div class="gallery-stage">
+            <img
+              [src]="selectedProject()!.images[selectedImageIndex()]"
+              [alt]="selectedProject()!.title + ' — screenshot ' + (selectedImageIndex() + 1)"
+              class="gallery-main-img"
+            />
+            @if (selectedProject()!.images.length > 1) {
+              <button class="gallery-arrow gallery-prev" (click)="prevImage()">‹</button>
+              <button class="gallery-arrow gallery-next" (click)="nextImage()">›</button>
+              <div class="gallery-counter">
+                {{ selectedImageIndex() + 1 }} / {{ selectedProject()!.images.length }}
+              </div>
+            }
+          </div>
+
+          @if (selectedProject()!.images.length > 1) {
+            <div class="gallery-thumbs">
+              @for (img of selectedProject()!.images; track $index) {
+                <button
+                  class="gallery-thumb"
+                  [class.active]="$index === selectedImageIndex()"
+                  (click)="setImageIndex($index)"
+                >
+                  <img [src]="img" [alt]="selectedProject()!.title + ' thumb ' + ($index + 1)" />
+                </button>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Corpo -->
+      <div class="modal-body">
+        <p class="modal-desc">
+          {{ isPt
+            ? (selectedProject()!.longDescPt || selectedProject()!.descPt)
+            : (selectedProject()!.longDescEn || selectedProject()!.descEn)
+          }}
+        </p>
+
+        @if ((isPt ? selectedProject()!.highlightsPt : selectedProject()!.highlightsEn).length) {
+          <div class="modal-highlights">
+            <h4 class="modal-section-label">{{ isPt ? 'Destaques' : 'Highlights' }}</h4>
+            <ul class="modal-highlights-list">
+              @for (h of (isPt ? selectedProject()!.highlightsPt : selectedProject()!.highlightsEn); track h) {
+                <li>{{ h }}</li>
+              }
+            </ul>
+          </div>
+        }
+
+        <div class="modal-footer-row">
+          <div class="modal-techs">
+            @for (tech of selectedProject()!.techs; track tech) {
+              <span class="tech-tag tech-tag-sm">{{ tech }}</span>
+            }
+          </div>
+          @if (selectedProject()!.url) {
+            <a
+              [href]="selectedProject()!.url"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary modal-visit-btn"
+              (click)="$event.stopPropagation()"
+            >
+              {{ isPt ? 'Visitar site' : 'Visit site' }} ↗
+            </a>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+}
