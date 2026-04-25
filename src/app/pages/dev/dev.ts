@@ -13,6 +13,7 @@ interface Project {
   highlightsEn: string[];
   images: string[];
   url: string | null;
+  githubUrl: string | null;
   isThisSite: boolean;
   year: string;
   typePt: string;
@@ -115,16 +116,17 @@ export class DevPage {
         'Vercel deployment with automatic CI/CD from GitHub',
       ],
       images: [
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-15-09.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-15-26.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-15-57.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-16-05.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-16-11.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-16-20.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-16-28.png',
-        '/Projects/Rgo_vision/Captura%20de%20tela%20de%202026-04-22%2021-16-32.png',
+        '/Projects/Rgo_vision/01-home.png',
+        '/Projects/Rgo_vision/02-clientes.png',
+        '/Projects/Rgo_vision/03-dev-hero.png',
+        '/Projects/Rgo_vision/04-dev-sobre.png',
+        '/Projects/Rgo_vision/05-dev-stack.png',
+        '/Projects/Rgo_vision/06-dev-experiencia.png',
+        '/Projects/Rgo_vision/07-dev-experiencia-2.png',
+        '/Projects/Rgo_vision/08-dev-educacao.png',
       ],
       url: null,
+      githubUrl: null,
       isThisSite: true,
       year: '2025',
       typePt: 'Site Institucional + Portfólio',
@@ -139,6 +141,13 @@ export class DevPage {
       longDescEn:
         'Entre Luz e Sombra is the professional website for clinical psychologist Fernanda Letícia (CRP 06/178740), specialized in Jungian Analytical Psychology. Built with HTML5, CSS3 and vanilla JavaScript, the project delivers an elegant and welcoming digital presence — with a baby-pink and seafoam-green palette chosen to convey balance and warmth.\n\nThe project includes full technical SEO (meta tags, Open Graph, Twitter Card, canonical URL and sitemap.xml), direct WhatsApp integration for appointment scheduling and smooth scroll animations without any framework. An integrated blog allows content publishing about Jungian Psychology, and the site supports both in-person sessions in Tatuapé, São Paulo and online consultations.',
       techs: ['HTML5', 'CSS3', 'JavaScript', 'SEO', 'WhatsApp API'],
+      images: [
+        '/Projects/EntreLuzeSombra/01-home.png',
+        '/Projects/EntreLuzeSombra/02-sobre.png',
+        '/Projects/EntreLuzeSombra/03-avaliacoes.png',
+        '/Projects/EntreLuzeSombra/04-blog.png',
+        '/Projects/EntreLuzeSombra/05-blog-artigo.png',
+      ],
       highlightsPt: [
         'Projeto real para cliente — psicóloga Fernanda Letícia, CRP 06/178740',
         'Paleta rosa bebê e verde água, tipografia elegante e layout totalmente responsivo',
@@ -157,8 +166,8 @@ export class DevPage {
         'Integrated blog for content about Jungian Psychology',
         'In-person Tatuapé (SP) + online modality both covered on the site',
       ],
-      images: [],
-      url: 'https://github.com/Raulgonc/ProjetoPsico',
+      url: 'https://entreluzesombra.com.br/',
+      githubUrl: 'https://github.com/Raulgonc/ProjetoPsico',
       isThisSite: false,
       year: '2026',
       typePt: 'Site Profissional — Cliente',
@@ -192,7 +201,8 @@ export class DevPage {
         'Environment-variable config with .env.example included',
       ],
       images: [],
-      url: 'https://github.com/Raulgonc/Project-Management',
+      url: null,
+      githubUrl: 'https://github.com/Raulgonc/Project-Management',
       isThisSite: false,
       year: '2026',
       typePt: 'API REST — Backend',
@@ -209,6 +219,7 @@ export class DevPage {
       highlightsEn: [],
       images: [],
       url: 'https://portifolio-two-sandy80.vercel.app',
+      githubUrl: null,
       isThisSite: false,
       year: '2024',
       typePt: 'Portfólio Pessoal',
@@ -225,6 +236,7 @@ export class DevPage {
       highlightsEn: [],
       images: [],
       url: null,
+      githubUrl: null,
       isThisSite: false,
       year: '2024',
       typePt: 'Aplicação de Estudo',

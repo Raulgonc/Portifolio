@@ -266,17 +266,30 @@
               <span class="tech-tag tech-tag-sm">{{ tech }}</span>
             }
           </div>
-          @if (selectedProject()!.url) {
-            <a
-              [href]="selectedProject()!.url"
-              target="_blank"
-              rel="noopener"
-              class="btn-primary modal-visit-btn"
-              (click)="$event.stopPropagation()"
-            >
-              {{ isPt ? 'Visitar site' : 'Visit site' }} ↗
-            </a>
-          }
+          <div class="modal-actions">
+            @if (selectedProject()!.url) {
+              <a
+                [href]="selectedProject()!.url"
+                target="_blank"
+                rel="noopener"
+                class="btn-primary modal-visit-btn"
+                (click)="$event.stopPropagation()"
+              >
+                {{ isPt ? 'Acessar site' : 'Visit site' }} ↗
+              </a>
+            }
+            @if (selectedProject()!.githubUrl) {
+              <a
+                [href]="selectedProject()!.githubUrl"
+                target="_blank"
+                rel="noopener"
+                class="btn-secondary modal-github-btn"
+                (click)="$event.stopPropagation()"
+              >
+                GitHub ↗
+              </a>
+            }
+          </div>
         </div>
       </div>
 
